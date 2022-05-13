@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title> Dactara</title>
+    
+    
+  <link rel="stylesheet" href="path/to/fontawesome.min.css">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+    <!--css file-->
+    <link rel="stylesheet" href="Ahmed200483.css">
+    <link rel="stylesheet" href="Dactarastyle.css">
+    
+    <!--font awesome icons file-->
+    <script src="https://kit.fontawesome.com/a076d05399.js" ></script>
+
+
+    <!--slider file-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+        
+    <!--    jquerry-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <nav>
+      <img class="logo" src="Images/LogoMakr-85XoZT.png">
+      
+      <div class="ham" >  
+        <span class="bar1"></span>  
+        <span class="bar2"></span>  
+        <span class="bar3"></span>  
+      </div>  
+
+      <ul class="nav-sub">
+          <li><a class="active" href="Home.php">Home</a></li>
+          <li><a class="active" href="Reservation.php">Reservation</a></li>
+          <li><a class="active" href="offers.php">Offers</a></li>
+          <li><a class="active" href="Counsoltation.php">Counsoltation</a></li>
+          <li><a class="active" href="aboutus.html">About US</a></li>
+          <li><a href="login.html" id="signButton" class="btn btn-outline-light btn-rounded" style="border-radius: 100px;" >Sign up / log in</a></li> 
+      </ul>
+  </nav>
+  
+  <!--    nav bar script -->
+  <script>
+
+      const hamburger = document.querySelector(".ham"); 
+      
+      const navsub = document.querySelector(".nav-sub"); 
+      
+      hamburger.addEventListener('click', () => {  
+      hamburger.classList.toggle("change")  
+      navsub.classList.toggle("nav-change")  
+      }); 
+
+  </script>
+  
+    
+</head> 
+    
+<body>
+
+    
+    
+ 
+   
+<div class="containerr">
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+         <!-- Slides -->
+            <div class="swiper-slide">
+                <img src="https://www.mashreqbank.com/-/jssmedia/Images/common/iStock-1010138070.ashx">
+            </div>
+            
+            <div class="swiper-slide">
+                <img src="https://img.onmanorama.com/content/dam/mm/en/lifestyle/health/images/2021/5/12/doctor-stethoscope-c.jpg" height="400"> 
+            </div>
+                
+            <div class="swiper-slide">
+                <img src="https://cdn.shopify.com/s/files/1/0269/9735/8705/files/special_offers_website_banner_light_da38b863-1948-4fb0-b8b0-6305362b4afc.jpg?v=1634766259" height="470">
+            </div>
+            
+            <div class="swiper-slide">
+                <img src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/05/pediatrician-baby-doctor-1296x728-header.jpg?w=1155&h=1528">
+            </div>
+        </div>
+        
+  <!-- pagination -->
+        <div class="swiper-pagination"></div>
+
+  <!-- navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>       
+</div>
+    
+    
+    <br>
+    <br>
+    
+
+    
+    <div class="container">
+      <div class="row height d-flex justify-content-center align-items-center">
+          <div class="col-md-8">
+              <div class="search"> 
+                  <form method="Get">
+                    <input type="text" class="form-control" name="query" placeholder="   Search "> 
+                    <button type="submit" class="btn btn-primary"name="search">Search</button>
+                  </form> 
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <?php
+	$query = $_GET['query']; 		
+		
+		
+		$raw_results = mysql_query("SELECT * FROM doctor
+			WHERE (`Doctor_Specialization` LIKE '%".$query."%') OR (`Doctor_Name` LIKE '%".$query."%')") or die(mysql_error());
+			
+	
+		
+		if(mysql_num_rows($raw_results) > 0){ 
+			
+			while($results = mysql_fetch_array($raw_results)){
+			
+			
+				echo "<p><h3>".$results['Doctor_Specialization']."</h3>".$Doctor_Name['text']."</p>";
+				
+			}
+			
+		}
+		else{ 
+			echo "No results";
+		}
+		
+?>
+
+
+    
+    <br>
+    <div class="choose">
+    <h5> Reservation:</h5> 
+    <br>
+    <button class="o_button">for other person</button>
+    
+    <br>
+    <br>
+    <form method="post">
+    <label for="Guest_ID">Guest ID:</label><br>
+      <input type="text" id="Guest_ID" name="Guest_ID" value="" required>
+      <br>
+        <label for="fname">Name:</label><br>
+      <input type="text" id="fname" name="Guest_UserName" value="" required>
+        <br>
+        <label for="password">password:</label><br>
+      <input type="password" id="password" name="Guest_Password" value="" required>
+        <br>
+        <label for="phone">Phone:</label><br>
+      <input type="number" id="phone" name="Guest_PhoneNumber" value="" required>
+        <br>
+        <label for="email">Email:</label><br>
+      <input type="email" id="lname" name="Guest_Email" value="" required>
+        <br>
+        <br>
+      <input  id="submit" type="submit" name="Submit">
+    </form> 
+</div>
+
+
+
+
+
+
+<?php
+
+    require_once('C:/aa/htdocs/GROUP_12/Client/Admin_connect.php');
+    if(isset($_POST['Submit'])){
+        
+        $Guest_ID=$_POST['Guest_ID'];
+        $Guest_UserName=$_POST['Guest_UserName'];
+        $Guest_Password=$_POST['Guest_Password'];
+        $Guest_PhoneNumber=$_POST['Guest_PhoneNumber'];
+        $Guest_Email=$_POST['Guest_Email'];
+        
+        
+        $result = $conn->query("INSERT INTO guest (Guest_ID,Guest_UserName,Guest_Password, Guest_PhoneNumber, Guest_Email) VALUES ('$Guest_ID','$Guest_UserName','$Guest_Password','$Guest_PhoneNumber','$Guest_Email')");
+        
+            
+        
+            if ($result) {
+             echo '<script>alert("Guest added successfully")</script>';
+            }
+         
+        } 
+
+
+
+?>
+    <br>
+    
+<div class="box-wrap">
+  <div class="box">
+    <img src="https://www.bioworld.com/ext/resources/Stock-images/Therapeutic-topics/ENT/ENT-doctor-child.png?1589216417" width="100%" height="300">
+    <h2 style="font-size: 2.5vw">Otorhinolaryngologist</h2>
+      <h5> a medical specialty which is focused on the ears, nose, and throat.</h5>
+
+  </div>
+    
+  <div class="box">
+    <img src="https://www.towerdental.com.au/uploads/170/46/Untitled-design-49.png" width="100%" height="300">
+            <h2>Dentist</h2>
+      <h5>a doctor who performs oral surgery and routine cleanings on patients.</h5>
+  </div>
+    
+  <div class="box">
+        <img src="https://doclists.in/wp-content/uploads/2021/09/Best-Pediatrician-in-Bhubaneswar.jpg" width="100%" height="300">
+            <h2>pediatrician</h2>
+      <h5>a doctor who focuses on the health of children and young adults.</h5>
+  </div>
+</div>
+
+
+<div class="box-wrap">
+  <div class="box">
+    <img src="https://yoursightmatters.com/wp-content/uploads/2013/03/eyedoctor.jpg" width="100%" height="300">
+      <h2>Ophthalmologist</h2>
+    <h5>a doctor who diagnoses and treats all eyes problems and vision services and provides treatment of medical disorders of the eye including surgery.</h5>
+  </div>
+    
+  <div class="box">
+    <img src="https://kevsbest.com/wp-content/uploads/2019/07/Best-Neurosurgeons-in-New-York.jpg" width="100%" height="300">
+            <h2>Neurosurgeons</h2>
+      <h5> a physician who specializes in the diagnosis and surgical treatment of disorders of the central and peripheral nervous system.</h5>
+  </div>
+    
+  <div class="box">
+        <img src="https://westidahoorthopedics.com/Portals/0/Images/foot-injury.jpg" width="100%" height="300">
+            <h2>Orthopedist</h2>
+      <h5>a doctor who specializes concerned with the correction or prevention of deformities, disorders, or injuries of the skeleton.</h5>
+  </div>
+</div>
+    
+
+    
+    
+    
+    
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+<script>
+    const swiper = new Swiper('.swiper', {
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        
+        loop: true,
+
+  // pagination
+  pagination: {
+    el: '.swiper-pagination',
+      clickable: true,
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
+    
+ //   other person button     
+    $(document).ready(function(){
+        $(".o_button").click(function(){
+                          $("form").toggle();
+                          });
+    });
+</script>
+    
+    <br>
+    <br>
+    <br>
+</body>
+
+    
+<footer>
+ <div class="row">
+  <div class="column">
+      <img src="Images/LogoMakr-85XoZT.png" width="100%">
+     </div>  
+     
+   <div class="column">
+      <ul>
+           <li><h4>Explore</h4></li>
+           <Li><a href="Home.html">Home</a></Li> 
+           <Li><a href="#">Reservation</a></Li> 
+           <Li><a href="offers.html">Offers</a></Li> 
+           <Li><a href="#">Counsolation</a></Li> 
+      </ul>
+     </div>
+     
+   <div class="column">
+      <ul >
+           <li><h4>Social</h4></li>
+           <Li><a href="youtube.com">YouTube</a></Li> 
+           <Li><a href="instagram.com">Instagram</a></Li> 
+           <Li><a href="facebook.com">FaceBook</a></Li> 
+      </ul>
+     </div>
+     
+   <div class="column">
+      <ul>
+           <li><h4>Help</h4></li>
+           <Li><a href="mailto:ahmed200483@bue.edu.eg">Contact US</a></Li> 
+           <Li><a href="aboutus.html">About</a></Li> 
+            
+      </ul>
+     </div>
+</div>
+</footer>
+    
+</html>

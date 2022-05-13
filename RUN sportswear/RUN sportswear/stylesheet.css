@@ -1,0 +1,472 @@
+body{
+  background-color: white;
+    overflow: auto;
+}
+img { max-width: 100%; height: auto; }
+.logo img{
+  width:30%;
+  height:200px;
+  padding-bottom:0;
+}
+.nav{
+  width: 100%;
+  font-style: normal;
+  font-size: 1.5em;
+  background-color: black;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.nav a {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* Change the color of links on hover */
+.nav a:hover {
+  background-color:#C2DFFF;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.nav a.active {
+  background-color: #C2DFFF;
+  color: white;
+}
+.h1{
+    text-align: center;
+    text-decoration: underline;
+    font-family:sans-serif;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+.slideshow-container {
+    position: relative;
+    width:100%;
+    display:inline-block;
+    text-align: center;
+
+}
+.slideshow-container img{
+    width:85%;
+    height:700px;
+    text-align: center;
+}
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: 15%;
+    margin-top: -22px;
+    padding: 10px;
+    font-size: 58px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  width: 1%;
+  border-radius: 3px 0 0 3px;
+  margin:0 auto;
+  color:black;
+  text-align: center;
+  padding-left: 80px;
+  padding-right: 20px;
+  padding-top: 300px;
+}
+.prev{
+    left:0;
+    border-radius:3px 0 0 3px;
+    width:1%;
+    margin:0 auto;
+    color:black;
+    text-align: center;
+    padding-right: 100px;
+    padding-left: 4px;
+    padding-top: 300px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: transparent;
+}
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+.arrow {
+  text-align: center;;
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+  border-radius: 15px;
+  padding: 5px;
+  z-index: 999;
+  max-width: 150px;
+  position: relative;
+}
+.arrow:before {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid black;
+}
+.arrow a{
+  text-decoration: none;
+  color:white;
+}
+.arrow a:hover{
+  color: #C2DFFF;
+}
+.notify-badge{
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    background:red;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    padding:5px 10px;
+    font-size:20px;
+}
+.notify-badge1{
+  margin: 0 auto;
+    text-align: center;
+    position: relative;
+    background:red;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    padding:5px 10px;
+    font-size:20px;
+}
+.notify-badge2{
+    margin: 0 auto;
+    text-align: center;
+    position: absolute;
+    background:#C2DFFF;
+    border-radius: 30px 30px 30px 30px;
+    color:black;
+    padding:5px 10px;
+    font-size:20px;
+}
+/*table styling*/
+table{
+  border-spacing: 20px;
+  margin:0 auto;
+
+}
+td{
+  background-color: #C2DFFF;
+
+}
+td img{
+  width: 400px;
+  height:400px;
+}
+h2{
+  text-align: center;
+  text-decoration: underline;
+}
+td .box{
+  text-align: center;
+}
+.box{
+  margin: 0 auto;
+}
+.box img{
+  width:100px;
+  height:100px;
+}
+.box a{
+  text-decoration: underline;
+  float: right;
+  color:black;
+}
+.box a:hover {
+  color: black;
+}
+.box p{
+  padding-right: 10px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: bold;
+}
+/*footer styling*/
+footer {
+  background: white;
+  padding: 90px 0;
+}
+
+.map {
+  width: 10%;
+  height: 10%;
+  display: flex;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+}
+
+.logo2 {
+  width: 180px;
+  margin: 0;
+}
+
+.sm {
+  margin: 10px 0;
+}
+
+.sm a {
+  margin-right:10px;
+  margin-top: 15px;
+  width: 35px;
+  height: 35px;
+  background-color: #ddd;
+  display: inline-block;
+  border-radius: 24px;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, .15),
+    -6px -6px 12px rgba(255, 255, 255, .1);
+  overflow: hidden;
+  font-size: 28px;
+  transition: .3s linear;
+  position: relative;
+}
+
+.sm a:hover {
+  transform: scale(1.3);
+  border-radius: 50%;
+}
+
+.sm a i::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-size: 200% 200%;
+  background-position: 75% 75%;
+  top: 0;
+  left: 0;
+  line-height: 35px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background .5s linear;
+}
+
+.sm a:hover i::before {
+  background-position: 0% 0%;
+}
+
+.fa-facebook-f::before {
+  background-image: linear-gradient(135deg, #3b5998 30%, #0a3d62 50%);
+}
+
+.fa-twitter::before {
+  background-image: linear-gradient(135deg, #1da1f2 30%, #0a3d62 50%);
+}
+
+.fa-instagram::before {
+  background-image: linear-gradient(135deg, #c32aa3 30%, #0a3d62 50%);
+}
+
+.fa-youtube::before {
+  background-image: linear-gradient(135deg, #d71e18 30%, #0a3d62 50%);
+}
+
+.fa-linkedin-in::before {
+  background-image: linear-gradient(135deg, #007bb5 30%, #0a3d62 50%);
+}
+
+.right-col_h1 {
+  font-size: 26px;
+}
+
+.border {
+  width: 100px;
+  height: 4px;
+  background: tomato;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.txtb {
+  flex: 1;
+  padding: 18px 40px;
+  font-size: 16px;
+  color: #333;
+  background: #ddd;
+  border: none;
+  font-weight: 700;
+  outline: none;
+  border-radius: 30px;
+  min-width: 260px;
+}
+
+.btn {
+  padding: 18px 40px;
+  font-size: 16px;
+  color: #f1f1f1;
+  background: tomato;
+  border: none;
+  font-weight: 700;
+  outline: none;
+  border-radius: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: opacity .3s linear;
+}
+
+.btn:hover {
+  opacity: .9;
+}
+
+.page-content {
+  min-height: 100vh;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width:960px) {
+  .footer-container {
+    max-width: 600px;
+  }
+
+  .right-col {
+    width: 100%;
+    margin-bottom: 60px;
+  }
+
+  .left-col {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .btn {
+    margin: 0;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+.Contact-info {
+  margin: 0px auto;
+  color: tomato;
+}
+
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+input[type=submit] hover{
+    background-color:#C2DFFF;
+}
+
+/* Style the container */
+form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+#quantity-field{
+    position: absolute;
+}
+#up,#down{
+    position: absolute;
+    margin: 0 auto;
+}

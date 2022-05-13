@@ -1,0 +1,253 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+/*
+body{
+    font-family: 'Playfair Display';
+    font-size: 2vw
+}
+*/
+
+
+nav{
+    background: #3a9efd;
+    height: 82px;
+    width: 100%;
+}
+
+.logo{
+    padding: 0 30px;
+}
+
+nav ul{
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a.active, a.hover{
+    background: #3a9efd;
+    transition: .5s
+}
+
+
+
+
+
+
+/*slider*/
+
+.containerr{
+    width: 100%;
+    height: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.swiper{
+    width: 90%;
+    height: 390px;
+}
+
+.swiper-slide img{
+    width: 100%;
+}
+
+.swiper .swiper-button-prev, .swiper .swiper-button-next{
+    color: #fff;
+}
+
+.swiper .swiper-pagination-bullet-active{
+background: #fff;}
+
+
+
+
+
+/*search bar*/
+.height {
+    height: 25vh
+}
+
+
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #3a9efd;
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid #3a9efd
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 14%;
+    background: #3a9efd;
+}
+
+
+/*querry*/
+.choose{
+    text-align: center;
+}
+
+.choose button{
+    text-decoration: none;
+    padding: 10px;
+    border-style: none;
+    border-radius: 20px;
+    background-color: #3a9efd;
+    color: whitesmoke;
+    
+}
+
+.y_button {
+    margin-right: 20px;
+}
+
+form{
+    display: none;
+}
+
+#submit {
+    background-color: #78c1ff;
+    color: whitesmoke;
+    border-style: none;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+
+
+
+
+
+
+
+/*specializations*/
+.box-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:10%;
+}
+.box{
+  padding:0px;
+  margin:2%;
+  background:white;
+  width:35%;
+  border:1px solid #d6d6d6;
+  box-shadow:0 2px 3px 0px rgba(0,0,0,0.25);
+  border-radius:3px;
+  transition:.2s all; 
+  font-size: 10vw;
+  color:black;
+  text-align:center;
+}
+.box h2{
+    font-size: 2.5vw;
+}
+.box h5{
+    font-size: 1.5vw;
+}
+.box-wrap:hover .box{
+  filter:blur(3px);
+  opacity:.5;
+  transform: scale(.98);
+  box-shadow:none;
+}
+.box-wrap:hover .box:hover{
+  transform:scale(1);
+  filter:blur(0px);
+  opacity:1;
+  box-shadow:0 8px 20px 0px rgba(0,0,0,0.125);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
+    width: 100%;
+    position: absolute;
+    background-color: #3a9efd;
+    height: 35vh;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  text-align: left;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 3%;
+  height: 100%;
+  background-color:transparent;
+  text-align: left;  
+  list-style: none;
+  line-height: inherit;
+}
+
+.column img{
+    margin: 10%;
+}
+
+.column ul li{
+    text-align: left;
+    font-size: 1.5vw;
+}
+
+.column ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+}

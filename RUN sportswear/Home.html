@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home Page</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="mayar ashraf">
+<meta charset="utf-8">
+</head>
+<body>
+  <div class="nav">
+    <div class="logo"> <img src="images/RUN3.jpg" alt="RUN"></div>
+    <nav>
+      <a href="Home.html">Home</a>
+      <a href="AdultsSportswear.html">Adults Sportswear</a>
+      <a href="KidsSportswear.html">Kids Sportswear</a>
+    </nav>
+  </div>
+  <br>
+<div class="slideshow-container">
+<div class="mySlides fade">
+   <a href="AdultsSportswear.html"><img src="images/16.jpg" alt="#"></a>
+   <div class="arrow"> <a href="AdultsSportswear.html">Jacket: $13 <br>shirt: $10  <br>short: $10 <br>Yogapants: $10 <br>Shoes: $20</a></div>
+
+</div>
+<div class="mySlides fade">
+    <a href="AdultsSportswear.html"><img src="images/2.jpg" alt="#"></a>
+       <div class="arrow"> <a href="AdultsSportswear.html">Yogapants: $10 <br> SportBra: $9</a></div>
+</div>
+
+<div class="mySlides fade">
+    <a href="AdultsSportswear.html"><span class="notify-badge">NEW</span> <img src="images/3.jpg" alt="#"></a>
+       <div class="arrow"> <a href="AdultsSportswear.html">Yogapants: $10 <br> SportBra: $9 <br>
+       shoes: $20</a></div>
+</div>
+
+<div class="mySlides fade">
+    <a href="AdultsSportswear.html"><span class="notify-badge">30% OFF</span><img src="images/9.jpg" alt="#"></a>
+       <div class="arrow"> <a href="AdultsSportswear.html"> Shoes: $20</a></div>
+</div>
+<div class="mySlides fade">
+    <a href="KidsSportswear.html"><img src="images/12.jpg" alt="#"></a>
+       <div class="arrow"> <a href="KidsSportswear.html">Sweater: $10 <br> Yogapants: $12  </a></div>
+</div>
+</div>
+<!-- Next and previous buttons -->
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+<br>
+<br>
+<br>
+  <script>
+  var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+var i;
+var slides = document.getElementsByClassName("mySlides");
+var dots = document.getElementsByClassName("dot");
+if (n > slides.length) {slideIndex = 1}
+if (n < 1) {slideIndex = slides.length}
+for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+}
+for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+}
+slides[slideIndex-1].style.display = "block";
+dots[slideIndex-1].className += " active";
+}
+  </script>
+  <br>
+  <br>
+<table><tr>
+  <td><span class="notify-badge1">50% OFF</span><a href="AdultsSportswear.html"><img src="images/6.jpg" alt="#"></a></td>
+  <td><span class="notify-badge1">60% OFF</span><a href="AdultsSportswear.html"><img src="images/7.jpg" alt="#"></a></td>
+  <td><span class="notify-badge1">30% OFF</span><a href="AdultsSportswear.html"><img src="images/14.png" alt="#"></a></td>
+</tr>
+<tr>
+  <td><span class="notify-badge1">60% OFF</span><a href="AdultsSportswear.html"><img src="images/5.jpg" alt="#"></a></td>
+  <td><span class="notify-badge1">60% OFF</span><a href="AdultsSportswear.html"><img src="images/17.jpg" alt="#"></a></td>
+<td>
+  <div class="box">
+    <h2>KIDS SPORTSWEAR:</h2>
+      <br>
+  <a href="KidsSportswear.html"><img src="images/4.jpg" alt="#"><img src="images/18.jpg" alt="#"><img src="images/19.jpg" alt="#"><img src="images/20.jpg" alt="#"><img src="images/21.jpg" alt="#">
+<img src="images/22.jpg" alt="#">
+<img src="images/23.jpg" alt="#"></a>
+<p><a href="KidsSportswear.html">See more >></a></p>
+  </div>
+  </td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+<footer>
+<div class="footer-container">
+  <div class="left-col">
+    <div class="sm">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <span class="Contact-info">Contact Us:</span><a href="phonenumber">+67692037</a>
+    <br>
+    <span class="Contact-info">Email:</span><a href="AMSYGalleria277@gmail.com">RUN@gmail.com</a>
+    <br>
+    <br>
+    <p class="rights-text">&copy; 2020 Created By MAYAR ASHRAF All Rights Reserved.</p>
+  </div>
+
+  <div class="right-col">
+    <h1 class="right-col_h1">Our Newsletter</h1>
+    <div class="border"></div>
+    <p>Enter Your Email to get our news and updates.</p>
+    <form action="action_page.php" class="newsletter-form">
+      <input type="text" class="txtb" placeholder="Enter Your Email">
+      <input type="submit" class="btn" value="submit">
+    </form>
+  </div>
+</div>
+</footer>
+      </body>
+</html>

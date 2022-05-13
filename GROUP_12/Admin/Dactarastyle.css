@@ -1,0 +1,132 @@
+nav{
+    background: #3a9efd;
+    height: 82px;
+    width: 100%;
+}
+
+.logo{
+    padding: 0 30px;
+}
+
+nav ul{
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 17px;
+    padding: 7px 13px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a.active, a.hover{
+    background: #3a9efd;
+    transition: .5s
+}
+
+.nav-sub{  
+  display:flex;  
+  justify-content:space-between;  
+ } 
+
+ .ham{  
+  display:none;  
+  padding:px;  
+  cursor:pointer; 
+  float: right;
+  margin: 20px 10px;
+ }  
+
+ .bar1,.bar2,.bar3{  
+  display:block;  
+  width:30px;  
+  height:2px;  
+  margin:5px auto;  
+  background-color:whitesmoke;
+  border-radius: 5px;
+  transition: 0.4s;  
+ }
+
+ @media only screen and (max-width:768px){ 
+
+ .nav-sub{  
+   position:absolute;   
+   top:10vh;  
+   right:-20px;  
+   flex-direction:column;  
+   transition:transform 0.3s ease-in;  
+   transform:translate(100%);  
+   z-index: 100;
+  }  
+ .nav-change{  
+   transform:translate(0%);  
+  }  
+ .ham{  
+   display:block;  
+  }  
+ .change .bar1 {  
+  transform: rotate(45deg) translate(8px,3px);  
+ }  
+ .change .bar2 {  
+  opacity: 0;  
+ }  
+ .change .bar3 {  
+  transform: rotate(-45deg) translate(8px,-3px);  
+ }  
+  .containerr{
+   margin-top:15px;
+ }
+     
+  #signButton{
+   background-color: #3a9efd;
+  }
+}
+
+footer{
+    width: 100%;
+    position: absolute;
+    background-color: #3a9efd;
+    height: 39vh;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  text-align: left;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 3%;
+  height: 100%;
+  background-color:transparent;
+  text-align: left;  
+  list-style: none;
+  line-height: inherit;
+}
+
+.column img{
+    margin: 10%;
+}
+
+.column ul li{
+    text-align: left;
+    font-size: 1.5vw;
+}
+
+.column ul li a{
+    text-decoration: none;
+    color: whitesmoke;
+}
