@@ -1,0 +1,116 @@
+﻿@using NonFactors.Mvc.Grid;
+@model IGridPager
+@{
+    Int32 totalPages = Model.TotalPages;
+    Int32 currentPage = Model.CurrentPage;
+    Int32 firstDisplayPage = Model.FirstDisplayPage;
+}
+<div class="mvc-grid-pager @Model.CssClasses" data-show-page-sizes="@Model.ShowPageSizes">
+    @if (totalPages > 0)
+    {
+    <ul>
+        @if (currentPage > 1)
+            {
+        <li><a href="#" data-page="1">&laquo;</a></li>
+        <li><a href="#" data-page="@(currentPage - 1)">&lsaquo;</a></li>
+            }
+            else
+            {
+        <li class="disabled"><a tabindex="-1">&laquo;</a></li>
+        <li class="disabled"><a tabindex="-1">&lsaquo;</a></li>
+            }
+        @for (Int32 page = firstDisplayPage; page <= totalPages && page < firstDisplayPage + Model.PagesToDisplay; page++)
+            {
+                if (page == currentPage)
+                {
+        <li class="active"><a href="#" data-page="@(page)">@(page)</a></li>
+                }
+                else
+                {
+        <li><a href="#" data-page="@(page)">@(page)</a></li>
+                }
+            }
+        @if (currentPage < totalPages)
+            {
+        <li><a href="#" data-page="@(currentPage + 1)">&rsaquo;</a></li>
+        <li><a href="#" data-page="@totalPages">&raquo;</a></li>
+            }
+            else
+            {
+        <li class="disabled"><a tabindex="-1">&rsaquo;</a></li>
+        <li class="disabled"><a tabindex="-1">&raquo;</a></li>
+            }
+    </ul>
+        if (Model.ShowPageSizes)
+        {
+    <div class="mvc-grid-page-sizes">
+        @if (Model.PageSizes.Count > 0)
+                {
+        <select class="mvc-grid-pager-rows">
+            @foreach (KeyValuePair<Int32, String> size in Model.PageSizes)
+                        {
+                            if (Model.RowsPerPage == size.Key)
+                            {
+            <option value="@size.Key" selected>@size.Value</option>
+                            }
+                            else
+                            {
+            <option value="@size.Key">@size.Value</option>
+                            }
+                        }
+        </select>
+                }
+                else
+                {
+        <input class="mvc-grid-pager-rows" value="@Model.RowsPerPage" />
+                }
+    </div>
+        }
+        else
+        {
+    <input class="mvc-grid-pager-rows" type="d-none" value="@Model.RowsPerPage" />
+        }
+    }
+    else
+    {
+    <input class="mvc-grid-pager-rows" type="d-none" value="@Model.RowsPerPage" />
+    }
+</div>
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<div class="jtable-bottom-card">
+    <div class="jtable-left-area">
+        <span class="jtable-page-list">
+            <span class="jtable-page-number-first">&lt;&lt;</span>
+            <span class="jtable-page-number-previous">&lt;</span>
+            <span class="jtable-page-number">1</span>
+            <span class="jtable-page-number jtable-page-number-active jtable-page-number-disabled">2</span>
+            <span class="jtable-page-number"></span>
+            <span class="jtable-page-number"></span>
+            <span class="jtable-page-number">3</span>
+            <span class="jtable-page-number-next">&gt;</span>
+            <span class="jtable-page-number-last">&gt;&gt;</span>
+        </span>
+        <span class="jtable-goto-page">
+            <span>Go to page: </span>
+            <select></select>
+        </span>
+        <span class="jtable-page-size-change">
+            <span>Row count: </span>
+            <select>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="250">250</option>
+                <option value="500">500</option>
+            </select>
+        </span>
+    </div><div class="jtable-right-area"><span class="jtable-page-info">Showing 21-40 of undefined</span></div>
+</div>
+

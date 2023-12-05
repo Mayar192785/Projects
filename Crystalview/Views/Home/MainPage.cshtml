@@ -1,0 +1,832 @@
+﻿@model IEnumerable<FinanceCore.DBModels.tblGE_SubSystems>
+@using FinanceCore.DBModels;
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+
+@using NonFactors.Mvc.Grid;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization;
+@using WTEG.Core.Tools;
+@using Microsoft.Extensions.Configuration
+
+ 
+@inject IConfiguration Configuration
+
+
+
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewBag.Title = " ..Index";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<style>
+    .card:hover {
+        -ms-transform: scale(1.1); /* IE 9 */
+        -webkit-transform: scale(1.1); /* Safari 3-8 */
+        box-shadow: 5px 6px 6px 2px #555;
+        transform: scale(1.1);
+        background-color: #BFD7ED;
+    }
+</style>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>@Configuration.GetSection("AppInfo")["Name"]</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Bootstrap icons-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <!-- Google fonts-->
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="~/css/styles.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="~/css/all.minn.css" rel="stylesheet">
+        <!-- Bootstrap version stylesheet -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    </head>
+    <body class="skin-gray d-flex flex-column min-vh-100" style="background-color:#ecf0f5;">
+        <nav class="navbar navbar-light bg-light static-top mb-2 py-0">
+                <a class="navbar-brand mx-4" href="/">
+                    <img src="~/images/soft-logo.png">
+                </a>
+                <div class="d-grid gap-3 d-md-flex justify-content-md-end mx-4">
+                    <div class="dropdown m-auto">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item dropdown d-inline-flex align-items-center mx-3">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" data-toggle="dropdown" style="color:white">
+                                    <!-- The user image in the navbar-->
+                                    @if (File.Exists(@Global.Common.Extensions.IdentityExtension.GetUserProperty(User, CustomClaimTypes.AvatarURL)))
+                                    {
+                                        <img src="@Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.AvatarURL)" class="user-image" alt="ui">
+                                    }
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    @if (@Global.Common.Extensions.IdentityExtension.GetUserProperty(User, CustomClaimTypes.GivenName) != null)
+                                    {
+                                        <span class="hidden-xs">@Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.GivenName) @Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.Surname)</span>
+                                    }
+                                    else
+                                    {
+
+                                        <span class="hidden-xs">@User.Identity.Name </span>
+                                    }
+                                    <i class="fa-solid fa-angle-up"></i>
+                                </a>
+                                <ul class="dropdown-menu" style="right: 0 !important;left: auto; width: 200px;padding: 10px; background-color: #f9f9f9; border-radius:0.25rem">
+                                    <li class="user-footer align-items-right" style=" display: flex; flex-direction: column;">
+                                        <div class="float-end col-sm-6" style="font-size: 12px !important; min-width: 100%;">
+                                            <a asp-area="Accounts" asp-controller="Manage" asp-action="Index" class="custBut" style="width: 100%;">
+                                                @* <img src="~/images/Iconfeather-user.svg" style=" padding-right: 5px;" /> *@
+                                                @Localizer["Profile"]
+                                            </a>
+                                        </div>
+
+                                        <div class="float-start col-sm-6 mt-3" style="font-size: 12px !important ;  min-width: 100%;">
+                                            <form asp-area="Accounts" asp-controller="Account" asp-action="SignOff" method="post">
+                                                <button type="submit" class="custBut" style="width: 100%;">
+                                                    @* <img src="~/images/Iconfeather-log-out.svg" style=" padding-right: 5px;" /> *@
+                                                    @Localizer["SignOut"]
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item d-inline-flex align-items-center mx-3"><a asp-area="Accounts" asp-controller="Account" asp-action="Login">@Localizer["LogIn"]</a></li>
+                        }
+                    </div>
+                    <div class="dropdown mx-3">
+                        <a class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false" style="color:black; font-size:1.2rem; text-decoration:none;">
+                            <i id="chngFlg" class="flag-us flag" style="margin:1.2rem 0.5rem"></i> English
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="Dropdown">
+                            <li>
+                                <a id="en" class="dropdown-item" href="/Home/MainPage/" style="font-size:1rem;"><i class="flag-us flag mx-1"></i>English <i id="chk" class="fa fa-check text-success ms-2"></i></a>
+                            </li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li>
+                                <a id="ar" class="dropdown-item" href="/Home/MainPage/?ui-culture=ar-EG" onclick="reloadP()" style="font-size:1rem;"><i class="flag-eg flag mx-1"></i>Arabic (العربية)</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+        </nav>      
+        <div class="container justfiy-content-center my-auto mx-auto">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3">
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100" >
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-book fa-2x text-dark"></i></div>
+                                <h5 class="card-title">@Localizer["Documentary Credits"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-envelope fa-2x text-info"></i></div>
+                                <h5 class="card-title">@Localizer["Letters of Guarantee"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-gears fa-2x text-black-50"></i></div>
+                                <h5 class="card-title">@Localizer["Logistic System"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                <a href="/General/Home" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-school fa-2x text-danger"></i></div>
+                                <h5 class="card-title">@Localizer["General"]</h5>
+                            </div>
+                         </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-file-invoice fa-2x text-blue"></i></div>
+                                <h5 class="card-title">@Localizer["Electronic Invoice"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                       <div class="card shadow text-center h-100">
+                           <div class="card-body">
+                              <div class="justify-content-center m-2"><i class="fas fa-cart-plus fa-2x text-light-50"></i></div>
+                              <h5 class="card-title">@Localizer["Purchasing & Vendors"]</h5>
+                           </div>
+                       </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="/General/Home" class="subsystem">
+                       <div class="card shadow text-center h-100">
+                          <div class="card-body">
+                        <div class="justify-content-center m-2"><i class="far fa-handshake fa-2x text-danger"></i></div>
+                             <h5 class="card-title">@Localizer["Sales & Clients"]</h5>
+                          </div>
+                       </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                       <div class="card shadow text-center h-100">
+                          <div class="card-body">
+                             <div class="justify-content-center m-2"><i class="fa-solid fa-house fa-2x text-warning"></i></div>
+                             <h5 class="card-title">@Localizer["Stock Control"]</h5>
+                          </div>
+                       </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fa-solid fa-sack-dollar fa-2x text-success"></i></div>
+                                <h5 class="card-title">@Localizer["Cash & Banks"]</h5>
+                            </div>
+                        </div>
+                     </a>
+                 </div>
+                <div class="col">
+
+                <a href="/FixedAssets" class="subsystem">
+                    <div class="card shadow text-center h-100">
+                        <div class="card-body">
+                            <div class="justify-content-center m-2"><i class="fa-solid fa-hand-holding-dollar fa-2x text-info"></i></div>
+                            <h5 class="card-title">@Localizer["Fixed Assets"]</h5>
+                        </div>
+                    </div>
+                </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fa-solid fa-book-open-reader fa-2x text-black"></i></div>
+                                <h5 class="card-title">@Localizer["General Ledger"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-gas-pump fa-2x text-warning"></i></div>
+                                <h5 class="card-title">@Localizer["Gas Production"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-wrench fa-2x text-secondary"></i></div>
+                                <h5 class="card-title">@Localizer["Maintenance_Follow up"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fa-solid fa-screwdriver-wrench fa-2x text-black-50"></i></div>
+                                <h5 class="card-title">@Localizer["Preventive Maintenance"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fa-solid fa-boxes-stacked fa-2x text-black"></i></div>
+                                <h5 class="card-title">@Localizer["Production System"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fa-solid fa-house-medical fa-2x text-warning"></i></div>
+                                <h5 class="card-title">@Localizer["Clinic System"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fa-regular fa-hospital fa-2x text-danger"></i></div>
+                                <h5 class="card-title">@Localizer["Hospital System"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fa-solid fa-clock fa-2x text-light-50"></i></div>
+                                <h5 class="card-title">@Localizer["Time Attendance"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-file-invoice-dollar fa-2x text-success"></i></div>
+                                <h5 class="card-title">@Localizer["Payroll & Salaries"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div> 
+                <div class="col">
+                    <a href="#"class="subsystem">
+                        <div class="card shadow text-center h-100">
+                            <div class="card-body">
+                                <div class="justify-content-center m-2"><i class="fas fa-users fa-2x text-secondary"></i></div>
+                                <h5 class="card-title">@Localizer["Personnel Affairs"]</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+       @*  @{
+            var fullSubs = Configuration.GetSection("ActiveSubs").Get<string[]>();
+            var UserSubs = new syMenuRolesVM().GetUserSubsystemList(User.Identity.Name);
+            <div class="container">
+                <div class="row newdashicons">
+
+
+                    @if ((Array.Exists(fullSubs, element => element == "Gen"))
+
+                &&   UserSubs.Contains(3)
+
+                )
+                    {
+                        <div>
+                            <a href="/General" class="module">
+                                <div class="icon" style="background-color:#d98b3a">
+                                    <i style="" class="fa fa-wrench"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["GeneralSettings"]</b>
+
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "GL")
+                &&   UserSubs.Contains(4)
+                )
+                    {
+                        <div>
+                            <a href="\GL" class="module">
+                                <div class="icon" style="background-color:#7a43ae">
+                                    <i style="" class="fas fa-balance-scale"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["GL"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "FA")
+                &&   UserSubs.Contains(12)
+                )
+                    {
+                        <div>
+                            <a href="\FixedAsset" class="module">
+                                <div class="icon" style="background-color:#d98b3a">
+                                    <i style="" class="fas fa-archway"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["FixedAssets"]</b>
+
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "AP")
+                &&   UserSubs.Contains(6)
+                )
+                    {
+                        <div>
+                            <a href="/Purchasing" class="module">
+                                <div class="icon" style="background-color:#6e6d6e">
+                                    <i style="" class="fas fa-shopping-cart"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["PurchasingAndSuppliers"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "AR")
+                &&   UserSubs.Contains(7)
+                )
+                    {
+                        <div>
+                            <a href="/Sales" class="module">
+                                <div class="icon" style="background-color:#853434">
+                                    <i style="" class="fas fa-hand-holding-usd"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["SalesAndCustomers"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "IV")
+                &&   UserSubs.Contains(5)
+                )
+                    {
+                        <div>
+                            <a href="/Inventory" class="module">
+                                <div class="icon" style="background-color:#2b7955">
+                                    <i style="" class="fas fa-warehouse"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["StockControl"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "Cash")
+
+                &&   UserSubs.Contains(8)
+                )
+                    {
+                        <div>
+                            <a href="/Payments" class="module">
+                                <div class="icon" style="background-color:#718ac3">
+                                    <i style="" class="fas fa-money-bill-alt"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["CashMgt"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "LC")
+                &&   UserSubs.Contains(11)
+                )
+                    {
+                        <div>
+                            <a href="/LC" class="module">
+                                <div class="icon" style="background-color:#793366">
+                                    <i style="" class="fas fa-envelope-open"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["LetterOfCredit"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "LG")
+                &&   UserSubs.Contains(13)
+                )
+                    {
+                        <div>
+
+                            <a href="/LG" class="module">
+                                <div class="icon" style="background-color:#707065">
+                                    <i style="" class="fas fa-envelope"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["LetterOfGuarentee"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "HR")
+                &&   UserSubs.Contains(9)
+                )
+                    {
+                        <div>
+                            <a href="/HR" class="module">
+                                <div class="icon" style="background-color:#718ac3">
+                                    <i style="" class="fas fa-users"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["HumanResources"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "Payroll")
+                &&   UserSubs.Contains(10)
+                )
+                    {
+
+                        <div>
+                            <a href="/HR/Home/IndexPayroll" class="module">
+                                <div class="icon" style="background-color:#793366">
+                                    <i style="" class="fas fa-money-check-alt"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Payroll"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "PR")
+                &&   UserSubs.Contains(17)
+                )
+                    {
+                        <div>
+                            <a href="/PrMaintenance" class="module">
+                                <div class="icon" style="background-color:#707065">
+                                    <i style="" class="fas fa-tools"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["PreventiveMaintenaance"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "RL")
+
+                &&   UserSubs.Contains(24)
+                )
+                    {
+                        <div>
+                            <a href="/RealState" class="module">
+                                <div class="icon" style="background-color:#d98b3a">
+                                    <i style="" class="fas fa-city"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["RealState"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "PK")
+                &&   UserSubs.Contains(26)
+                )
+                    {
+                        <div>
+                            <a href="/Parking/Home/Index" class="module">
+                                <div class="icon" style="background-color:#2b7955">
+                                    <i style="" class="fas fa-parking"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["ParkingManagement"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "DMS")
+                &&   UserSubs.Contains(25)
+                )
+                    {
+                        <div>
+                            <a href="/DMS" class="module">
+                                <div class="icon" style="background-color:#191120">
+                                    <i style="" class="fas fa-file-upload"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["DocumentsMgt"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "TK")
+                &&   UserSubs.Contains(15)
+                )
+                    {
+                        <div>
+                            <a href="/Ticketing" class="module">
+                                <div class="icon" style="background-color:#7a43ae">
+                                    <i style="" class="fas fa-ticket-alt"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Ticketing"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "RS")
+                &&   UserSubs.Contains(23)
+
+                )
+                    {
+                        <div>
+                            <a href="/Reservations" class="module">
+                                <div class="icon" style="background-color:#6e6d6e">
+                                    <i style="" class="fas fa-hotel"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Reservations"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+
+                    @if (Array.Exists(fullSubs, element => element == "SCH")
+                &&   UserSubs.Contains(19)
+                )
+                    {
+                        <div>
+                            <a href="/School" class="module">
+                                <div class="icon" style="background-color:#853434">
+                                    <i style="" class="fas fa-school"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["SchoolManagement"]</b>
+                            </a>
+                        </div>
+                    }
+
+
+                    @if (Array.Exists(fullSubs, element => element == "TR")
+                &&   UserSubs.Contains(20)
+                )
+                    {
+                        <div>
+
+                            <a href="/Training" class="module">
+                                <div class="icon" style="background-color:#7a43ae">
+                                    <i style="" class="fas fa-chalkboard-teacher"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Training"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "Dental")
+                &&   UserSubs.Contains(16)
+                )
+                    {
+                        <div>
+                            <a href="/Dental" class="module">
+                                <div class="icon" style="background-color:#6e6d6e">
+                                    <i style="" class="fas fa-stethoscope"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["PolyClinic"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "POS")
+                &&   UserSubs.Contains(14)
+                )
+                    {
+                        <div>
+                            <a href="/POS" class="module">
+                                <div class="icon" style="background-color:#853434">
+                                    <i style="" class="fas fa-cash-register"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["PointOfSales"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "Club")
+
+                &&   UserSubs.Contains(18)
+                )
+                    {
+                        <div>
+                            <a href="/Club" class="module">
+                                <div class="icon" style="background-color:#7a43ae">
+                                    <i style="" class="fas fa-trophy"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Club"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "enLab")
+                &&   UserSubs.Contains(21)
+                )
+                    {
+                        <div>
+                            <a href="/enLab" class="module">
+                                <div class="icon" style="background-color:#6e6d6e">
+                                    <i style="" class="fas fa-vials"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["EnvLab"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "Gym")
+                &&   UserSubs.Contains(18)
+                )
+                    {
+                        <div>
+                            <a href="/Club/Home/IndexGym" class="module">
+                                <div class="icon" style="background-color:#853434">
+                                    <i style="" class="fa fa-dumbbell"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Gym"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "Admin")
+                &&   UserSubs.Contains(1)
+                )
+                    {
+                        <div>
+                            <a href="/Area" class="module">
+                                <div class="icon" style="background-color:#7a43ae">
+                                    <i style="" class="fa fa-cogs"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Admin"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "User"))
+                    {
+                        <div>
+                            <a href="/Utils/syIncidents" class="module">
+                                <div class="icon" style="background-color:#6e6d6e">
+                                    <i style="" class="fas fa-car-crash"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Incidents"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "User"))
+                    {
+                        <div>
+                            <a href="/Area/Home/UserPreferences" class="module">
+                                <div class="icon" style="background-color:#853434">
+                                    <i style="" class="fa fa-cogs"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["UserPreference"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "Meeting")
+                &&   UserSubs.Contains(27)
+                )
+                    {
+                        <div>
+                            <a href="/Meeting" class="module">
+                                <div class="icon" style="background-color:#853434">
+                                    <i style="" class="fas fa-handshake"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["MeetingManagements"]</b>
+                            </a>
+                        </div>
+                    }
+
+                    @if (Array.Exists(fullSubs, element => element == "Visitor")
+                &&   UserSubs.Contains(28)
+                )
+                    {
+                        <div>
+                            <a href="/Visitor/Home/Index" class="module">
+                                <div class="icon" style="background-color:#7a43ae">
+                                    <i style="" class="fas fa-balance-scale"></i>
+                                </div>
+                                <b class="cut-text">@Localizer["Visitor"]</b>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        } *@
+
+            
+                @await Component.InvokeAsync("Footer")
+           
+    
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="~/js/scripts.js"></script>
+        <script src="~/js/site.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- MDB -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+    </body>
+
+</html>
+
+@* <!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div> *@
+@section Scripts {
+
+    <script>
+        $(document).on('change', '#CheckAll', function () {
+            $('[id^="Check_"').prop('checked', $(this).prop('checked'));
+        });
+    </script>
+    <script type="text/javascript">
+        document.body.addEventListener('click', function (event) {
+            // filter out clicks on any other elements
+            if (event.target.nodeName == 'A' && event.target.getAttribute('aria-disabled') == 'true') {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

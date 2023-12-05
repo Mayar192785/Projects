@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Message>
+
+
+
+@* <h6> <breadcrumb class="breadcrumb ml-auto" asp-homepage-title="Home" asp-homepage-url="@Url.Action("MainPage", "Home", values: new { area = "/" })" asp-homepage-glyphicon="glyphicon glyphicon-home">  </breadcrumb></h6>
+ *@
+@* <nav class="d-flex me-0">
+    <h6 class="mb-0">
+        <a class="text-reset" asp-homepage-title="Home" asp-homepage-url="@Url.Action("MainPage", "Home", values: new { area = "/" })" asp-homepage-glyphicon="glyphicon glyphicon-home"></a> *@
+@*         <span>/</span>
+        <a href="" class="text-reset">Analytics</a>
+        <span>/</span>
+        <a href="" class="text-reset"><u>Dashboard</u></a> *@
+@*     </h6>
+</nav> *@
+@* <div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="#" asp-homepage-title="Home" asp-homepage-url="@Url.Action("MainPage", "Home", values: new { area = "/" })" asp-homepage-glyphicon="glyphicon glyphicon-home">Home</a></li>
+        <li class="breadcrumb-item active">Starter Page</li>
+    </ol>
+</div> *@
+<div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="@Url.Action("MainPage", "Home", new { area = "" })">Home</a></li>
+        @if (!string.IsNullOrEmpty(ViewBag.CurrentDirectory))
+        {
+            <li class="breadcrumb-item"><a href="@Url.Action("Directory", "AppBaseController", new { area = "", directory = ViewBag.CurrentDirectory })">@ViewBag.CurrentDirectory</a></li>
+        }
+        <li class="breadcrumb-item active">@ViewBag.CurrentPage</li>
+    </ol>
+</div>

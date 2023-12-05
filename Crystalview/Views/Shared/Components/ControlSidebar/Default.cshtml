@@ -1,0 +1,52 @@
+﻿
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using NonFactors.Mvc.Grid;
+
+@inject IViewLocalizer Localizer
+
+<aside class="control-sidebar control-sidebar">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane active" id="control-sidebar-home-tab">
+            @Html.Raw(ViewBag.PageHelpContainer)
+        </div>
+        <!-- /.tab-pane -->
+        <!-- Stats tab content -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+        <!-- /.tab-pane -->
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post" asp-area="Localization" asp-controller="Localization" asp-action="ResetCashLanguage" asp-route-returnUrl="@Context.Request.Path">
+                <h3 class="control-sidebar-heading">
+                    @Localizer["General Settings"]
+                </h3>
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                     
+                        <div class="form-group has-feedback  ">
+                            <label class="control-sidebar-subheading">
+                                @Localizer["ClearCashe"] :
+                                 
+                            </label>
+                            <p>
+                                <button type="submit" class="btn btn-info btn-xs">@Localizer["ClearCash"]</button>
+                            </p>
+                        </div>
+                }
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+</aside>

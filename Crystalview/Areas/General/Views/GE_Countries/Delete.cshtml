@@ -1,0 +1,39 @@
+@model string
+@using Global.Models
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Services;
+
+@inject IViewLocalizer Localizer
+
+@{
+
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<form asp-action="Delete" asp-controller="GE_Countries" role="form">
+    <partial name="Modal/_ModalHeader" model=' new ModalHeader { Heading = @Localizer["DeleteGE_Countries"].Value }' />
+
+    <div class="modal-body  ">
+        <h3>
+            <span class="label ">
+                @Localizer["DeleteGE_CountriesConfirm"] @Model?
+            </span>
+        </h3>
+
+        <p class="text-danger">@ViewData["ErrorMessage"]</p>
+    </div>
+    <partial name="Modal/_ModalFooter" model=' new ModalFooter { CancelButtonText=@Localizer["btnCancel"].Value, SubmitButtonClass = "btn btn-danger", SubmitButtonText = @Localizer["btnDelete"].Value , SubmitButtonIcon="fa fa-trash  fa-lg"  }' />
+</form>
+
+@section scripts
+    {
+
+    <script>
+        $('#myModal').on('hidden.bs.modal', function () {
+            location.reload();
+
+        })
+    </script>
+}

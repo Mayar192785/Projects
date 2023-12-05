@@ -1,0 +1,38 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization;
+@using System.Threading;
+@using WTEG.Core.Tools;
+
+
+@*@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet*@
+@inject IViewLocalizer Localizer
+
+
+@*@{ await Html.RenderPartialAsync("_CssPartial"); }*@
+
+@*@Html.Raw(JavaScriptSnippet.FullScript)*@
+
+<div class="container body-content">
+    @*<partial name="MvcLookup/_Dialog" />*@
+
+
+    @RenderBody()
+
+
+</div>
+
+
+
+@*@{ await Html.RenderPartialAsync("_JsPartial"); }*@
+
+
+
+
+
+@RenderSection("Scripts", required: false)
+
+
+

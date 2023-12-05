@@ -1,0 +1,150 @@
+@model FinanceCore.DBModels.tblGE_Branchs
+@*@using  FinanceCore.Globalization;*@
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Services;
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "GE_Branchs ..Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn {
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem
+    }
+
+    #nav-tab .nav-link {
+        border-color: #094766;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+</style>
+<div class="row mx-5 my-auto">
+    <!-- /Start Tabs -->
+    <div class="col-md-12">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link shadow shadow-bottom-0 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["BasicDetails"]</button>
+            </div>
+        </nav>
+        <div class="tab-content mx-auto my-auto py-auto">
+
+            <div class="active  tab-pane" id="details">
+                <div class="box shadow mb-4">
+                    <div class="form box-body py-3 px-3">
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvBranchCode" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="BranchCode" class="control-label "></label>
+                                     <input asp-for="BranchCode" asp-format="{0:N0}" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div ID="dvBranchNameA" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="BranchNameA" class="control-label "></label>
+                                     <input asp-for="BranchNameA" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvBranchNameE" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="BranchNameE" class="control-label "></label>
+                                    <input asp-for="BranchNameE" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div ID="dvCountryCode" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="CountryCode" class="control-label "></label>
+                                    <input asp-for="CountryCode" asp-format="{0:N0}" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvCityCode" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="CityCode" class="control-label "></label>
+                                    <input asp-for="CityCode" asp-format="{0:N0}" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div ID="dvAddressA" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="AddressA" class="control-label "></label>
+                                    <input asp-for="AddressA" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvAddressE" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="AddressE" class="control-label "></label>
+                                    <input asp-for="AddressE" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div ID="dvTel1" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="Tel1" class="control-label "></label>
+                                    <input asp-for="Tel1" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvTel2" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="Tel2" class="control-label "></label>
+                                    <input asp-for="Tel2" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div ID="dvTel3" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="Tel3" class="control-label "></label>
+                                    <input asp-for="Tel3" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvFax" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="Fax" class="control-label "></label>
+                                    <input asp-for="Fax" class="form-control w-50" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 btns my-3">
+                            <a asp-controller="GE_Branchs"
+                               class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.BranchCode" style=@(await new syPageRolesVM().pageCanEdit(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["UpdateBtn"]<i class="far fa-save"></i></a>
+                            <a asp-controller="GE_Branchs" class="btn btn-primary" asp-action="Index">@Localizer["BackBtn"] <i class="fas fa-angle-double-left"></i></a>
+                            <a asp-controller="GE_Branchs" class="btn btn-primary" asp-action="PrintFormReport"
+                               asp-route-id="@Model.BranchCode" asp-route-formAction="Details" data-modal='' id="btnPrintForm" style=@(await new syPageRolesVM().pageCanPrint(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["PrintBtn"]<i class="fas fa-print"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+ }

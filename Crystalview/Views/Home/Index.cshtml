@@ -1,0 +1,175 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" dir="ltr" >
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Home</title>
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <!-- <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" /> -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="~/css/styles.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="~/css/all.minn.css" rel="stylesheet">
+        <!-- Bootstrap version stylesheet -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top" style="background-color:#094766;"><i class="fas fa-angle-up" style="color:white"></i></button>
+        <!-- Navigation-->
+        <nav class="navbar navbar-light bg-light static-top py-0">
+            @* <div class="container d-flex justify-content-between align-items-center"> *@
+                <a class="navbar-brand mx-4" href="#!">
+                    <img src="../images/soft-logo.png">
+                </a>
+                <div class="dropdown d-grid gap-3 d-md-flex justify-content-md-end mx-4">
+
+                    <a class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false" style="color:black; margin-top:5px; font-size:1.2rem;">
+                        <i id="chngFlg" class="flag-us flag" style="margin:1.2rem 0.5rem"></i> English
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="Dropdown">
+                        <li>
+                            <a id="en" class="dropdown-item" href="/" style="font-size:1rem;"><i class="flag-us flag"></i>English <i id="chk" class="fa fa-check text-success ms-2"></i></a>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <a id="ar" class="dropdown-item" href="/?ui-culture=ar-EG" onclick="reloadP()" style="font-size:1rem;"><i class="flag-eg flag"></i>Arabic (العربية)</a>
+                        </li>
+                     </ul>
+                    <button type="button" class="btn btn-sm mt-1" style="background-color:#094766; ">
+                        <a class="nav-link" style="color:white; font-weight:600; font-size:1.2em" asp-area="" asp-controller="Home" asp-action="Login">@Localizer["Login"]</a>
+                    </button>
+                </div>
+            @* </div> *@
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <img src="../images/CrystalSoftManin1.jpg">
+        </header>
+        <!-- Icons Grid-->
+        <section class="features-icons bg-light text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex mb-4"><i class="fas fa-globe m-auto"></i></div>
+                            <h4>@Localizer["Integrated System"]</h4>
+                            <p class="lead mb-0">@Localizer["The crystal system combines many specialized and integrated systems in all its parts, which makes it easy to update, develop and modify for customers to comply with the development and growth of their organizations"]</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex mb-4"><i class="fas fa-database m-auto"></i></div>
+                            <h4>@Localizer["Data Quality"]</h4>
+                            <p class="lead mb-0">@Localizer["The integrated Crystal View system provides the effort of searching the books and works to organize documents and statements and extract detailed reports with ease and high quality"]</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-3">
+                            <div class="features-icons-icon d-flex mb-4"><i class="fas fa-comment-dots m-auto"></i></div>
+                            <h4>@Localizer["Save Time"]</h4>
+                            <p class="lead mb-0">@Localizer["Crystal View system provides the necessary time to conduct administrative and accounting operations in record time and helps in issuing reports, financial statements, audit and others"]</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-3">
+                            <div class="features-icons-icon d-flex mb-4"><i class="fas fa-microchip m-auto"></i></div>
+                            <h4>@Localizer["Ease of use"]</h4>
+                            <p class="lead mb-0">@Localizer["Ease of use is considered the most important features of Crystal software, as the company is working on developing its products to facilitate use in crystal systems and programs"]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Image Showcases-->
+        <section class="showcase">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img d-flex flex-wrap"><img src="../images/ERP1.png"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text py-0">
+                        <h2>@Localizer["ERP System"]</h2>
+                        <p class="lead mb-0">@Localizer["Crystal soft is a leading software company in Egypt. Crystal Soft has been established since 2001 and specializes in software development and applications, and also specializes in providing consulting and technical support services. We bring a wide range of software solutions for small and medium-sized businesses and large companies along with training."]</p>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 text-white showcase-img d-flex flex-wrap"><img src="../images/CrystalView_Gledger1.jpg"></div>
+                    <div class="col-lg-6 my-auto showcase-text py-0">
+                        <h2>@Localizer["Access from multiple devices"]</h2>
+                        <p class="lead mb-0">@Localizer["With its responsive design and adaptive user interface, Crsytal View adapts seamlessly to different devices such as desktops, laptops, tablets, and smartphones, providing a consistent user experience.This flexibility allows employees, managers, and stakeholders to access and interact with critical business data, monitor real-time updates, and perform essential tasks from anywhere, whether they are in the office, on the go, or working remotely."]</p>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img d-flex flex-wrap"><img src="../images/Programming.jpg"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text py-0">
+                        <h2>@Localizer["Cloud Hosting"]</h2>
+                        <p class="lead mb-0">@Localizer["By leveraging the power of cloud technology, Crystal View enables efficient collaboration, streamlined workflows, and data synchronization across multiple devices, empowering organizations to make informed decisions, optimize resource allocation, and drive productivity regardless of physical boundaries."]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+   
+        <section class="text-center bg-light">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide mt-2" data-bs-ride="carousel">
+              <h2>@Localizer["What people are saying..."]</h2>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <img src="../images/Dr. Mohamed.jpg" class="img-fluid rounded-circle mb-3" alt="...">
+                        <div class="position-relative d-none d-md-block">
+                            <h3>@Localizer["Dr. Mohamed Al Henawy"]</h3>
+                            <p class="text-wrap">@Localizer["The Crystal program is one of the best programs I have worked on because it has all your needs. It has strong reports for any employer and is easy to deal with. The most important need is also that the after-sales service exists and continues in a positive way, which is to distinguish any respectable program."]</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="../images/MonayAlaska.png" class="img-fluid rounded-circle mb-3" alt="...">
+                        <div class="position-relative d-none d-md-block">
+                            <h3>@Localizer["Monay Lamaay Rayes"]</h3>
+                            <p class="text-wrap">@Localizer["Crystal View program is really one of the best programs I have used, because it is a program built on strong basis, you find comfort and flexibility in use with security, in addition to all the reports for accounting use or for the employer, which helps in making the right decision on time."]</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="../images/Mostafa Abbas11.png" class="img-fluid rounded-circle mb-3" alt="...">
+                        <div class="position-relative d-none d-md-block">
+                            <h3>@Localizer["Mostafa Abbas"]</h3>
+                            <p class="text-wrap">@Localizer["I have been working in the medical field since 2003 and I have used many programs, but when I used the Crystal View program, I did not find it easier to work and give me the appropriate reports and technical support that I find when I need it, starting from using this system, I always recommend it."]</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+        @await Component.InvokeAsync("Footer")
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/admin2022/js/admin2022.js"></script>
+        <!-- Core theme JS-->
+        <script src="~/js/scripts.js"></script>
+        <script src="~/js/site.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- MDB -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+    </body>
+</html>

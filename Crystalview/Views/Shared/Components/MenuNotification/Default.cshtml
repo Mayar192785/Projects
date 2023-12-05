@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Message>
+
+<li class="nav-item dropdown d-inline-flex  align-items-center">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-bell mt-2 mx-4" style="font-size:1.2rem;"></i>
+        <span class="badge badge-warning navbar-badge mx-3 mt-n2">@Model.Count()</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-item dropdown-header">You have @Model.Count() notifications</span>
+        <div class="dropdown-divider"></div>
+        @foreach (var message in Model)
+        {
+                <!-- start notification -->
+                <a href="@message.URLPath" class="dropdown-item">
+                    @* <i class="@message.FontAwesomeIcon"></i> *@
+                    <i class="fas fa-envelope mr-2"></i> @message.ShortDesc
+                </a>
+               @*   <a href="@message.URLPath">
+                    <i class="fa fa-bell"></i> @message.ShortDesc
+                 </a> *@
+        }
+    </div>
+</li>
+

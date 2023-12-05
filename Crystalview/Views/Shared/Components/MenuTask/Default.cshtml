@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Message>
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization;
+
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+
+
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@* 
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+} *@
+
+<li class="nav-item dropdown d-inline-flex align-items-center">
+    <a class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false" style="color:black; font-size:1.2rem; text-decoration:none;">
+        <i id="chngFlg" class="flag-us flag" style="margin:1.2rem 0rem"></i> English
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="Dropdown">
+        <li>
+            <a id="en" class="dropdown-item" href="#" style="font-size:1rem;" onclick="changeLanguage('en-US');"><i class="flag-us flag mx-1"></i>English <i id="chk" class="fa fa-check text-success ms-2"></i></a>
+        </li>
+        <li><hr class="dropdown-divider" /></li>
+        <li>
+            <a id="ar" class="dropdown-item" href="#" onclick="changeLanguage('ar-EG');" style="font-size:1rem;"><i class="flag-eg flag mx-1"></i>Arabic (العربية)</a>
+        </li>
+     </ul>
+@*     <div class="d-flex lang-container justify-content-between">
+        <a class="lang">Arabic</a>
+        <i class="fas fa-globe-europe"></i>
+    </div> *@
+</li>

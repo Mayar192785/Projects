@@ -1,0 +1,125 @@
+@model IEnumerable<FinanceCore.DBModels.tblGE_SubSystems>
+@*@using  FinanceCore.Globalization;*@
+@using FinanceCore.DBModels;
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@*@model IEnumerable<FinanceCore.DBModels.GE_SubSystems>*@
+@using NonFactors.Mvc.Grid;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using WTEG.SqlLocalizer.DbStringLocalizer;
+@using Microsoft.Extensions.Localization;
+@using Newtonsoft.Json;
+
+@using WTEG.SqlLocalizer;
+
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = "GE_SubSystems ..Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
+</head>
+<style>
+    .btn{
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem
+    }
+</style>
+<div class="card-body">
+    <form asp-controller="GE_SubSystems"
+          asp-action="Edit"
+          asp-route-returnurl="@ViewBag.ReturnUrl"
+          asp-anti-forgery="false"
+          id="FullForm"
+          method="post">
+        <div class="container justfiy-content-center">
+            <div class="row row-cols-2 row-cols-md-2 row-cols-lg-2 g-1">
+                <div class="col-12 col-sm-6 col-lg-6 px-5">
+                        <!--Searchstuffgohere-->
+                    <div class="input-group mb-3">
+                          <input type="search" class="form-control" placeholder="@Localizer["Search"]" aria-label="Search" aria-describedby="search-addon">
+                          <span class="input-group-text border-0" id="search-addon" type="button"><i class="fa-solid fa-search"></i></span>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <a class="btn mb-3" id="btnCreate" asp-action="Create">
+                       @Localizer["CreateBtn"]
+                       <span class="fas fa-plus mx-1"></span>
+                   </a>
+                </div>
+                  @*   <div class="widget-buttons float-left">
+                        <span id="GridConfigure" class="fa fa-cog"></span>
+                    </div> *@
+                
+            </div>
+        </div>
+
+
+    <div class="widget-content w-100 bg-white shadow">
+            @(Html
+                .Grid(Model)
+                .Build(columns =>
+                {
+
+                    //columns.Add(model => Html.CheckBox("Check_" + model.ID)).Titled(Html.CheckBox("CheckAll"));
+                    columns.Add(model => model.ID).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["ID"]).Formatted("{0:N0}");
+                    columns.Add(model => model.SubSystemName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["SubSystemName"]);
+                    columns.Add(model => model.SubSystemArabicName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["SubSystemArabicName"]);
+                    columns.Add(model => model.SubSystemShortName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["SubSystemShortName"]);
+                    columns.Add(model => model.IsActive).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["IsActive"]).RenderedAs(model => model.IsActive == true ? string.Format("<img src=\"{0}\" alt=\"True\" class='d-block m-auto'/>", Url.Content("~/images/checked.png")) : string.Format("<img src=\"{0}\" alt=\"False\"/>", Url.Content("~/images/unchecked.png"))).Encoded(false);
+
+                    columns.Add(model => $"<a data-id='{model.ID}' href='/General/GE_SubSystems/details/{model.ID}' id='{model.ID}' title='{@Localizer["DetailsButton"].Value}'> <span class='fa fa-list-alt fa-lg' style='color:#094766;'> </span> </a>").Encoded(false).Css("action");
+
+                    columns.Add(model => $"<a data-id='{model.ID}' href='/General/GE_SubSystems/edit/{model.ID}' id='{model.ID}' title='{@Localizer["EditButton"].Value}'> <span class='fas fa-edit fa-lg' style='color:#094766;'> </span> </a>").Encoded(false).Css("action");
+
+                    columns.Add(model => $"<a data-id='{model.ID}' id='{model.ID}' title='{@Localizer["DeleteButton"].Value}' data-toggle='modal' data-target='#myModal' class='ModalClick'> <span class='fa fa-trash  fa-lg text-danger'> </span> </a>").Encoded(false).Css("action");
+                })
+                .Empty(@Localizer["GridEmptyData"].Value)
+                //.Configure (GE_SubSystemsgridConfig)
+                .Filterable()
+                .Sortable()
+                .Named("GE_SubSystemsgrid")
+                .Id("GE_SubSystemsgrid")
+                //.Using(GridProcessingMode.Manual)
+                .Pageable(pager =>
+                {
+                    // pager.TotalRows = ViewBag.TotalRows;
+                    pager.PageSizes = new Dictionary<Int32, String> { { 0, "All" }, { 25, "25" }, { 40, "40" } };
+                    pager.ShowPageSizes = true;
+                    pager.PagesToDisplay = 5;
+                    pager.CurrentPage = 1;
+                    pager.RowsPerPage = 25;
+                })
+                )
+        </div>
+    </form>
+</div>
+<!-- modal placeholder-->
+<div class ="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Localizer["Confirm Delete"]</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>@Localizer["Are you sure you want to delete GE_SubSystems "]@Model ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn"  data-dismiss="modal">@Localizer["Close"]</button>
+                <button type="button" class="btn btn-danger">@Localizer["Delete"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+@*     <script>
+        document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+    </script> *@
+    <script src="~/js/mvc-grid/mvc-grid.js"></script>
+}

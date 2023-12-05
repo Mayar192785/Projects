@@ -1,0 +1,186 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization;
+@using System.Threading;
+@using WTEG.Core.Tools;
+
+@inject IViewLocalizer Localizer
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    //var cultureItems = LocOptions.Value.SupportedUICultures
+    //    .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+    //    .ToList();
+}
+
+<script>
+    //get current culture format for date
+    var CurrentDateFormat = '@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern.ToUpper()';
+
+</script>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="~/lib/bootstrap/js//bootstrap.js"></script>
+<script src="~/lib/moment/min/moment.min.js"></script>
+<script src="~/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/lib/jt.timepicker/jquery.timepicker.min.js"></script>
+
+@*<script src="~/lib/font-awesome/js/all.js"></script>*@
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/jquery-ui/jquery-ui.js"></script>
+<script src="~/lib/jstree/dist/jstree.js"></script>
+<script src="~/lib/MvcLookup/mvc-lookup.js" asp-append-version="true"></script>
+<script src="~/lib/MvcGrid/mvc-grid.js"></script>
+
+<script src="~/lib/jquery-cascading-dropdown/jquery.cascadingdropdown.js"></script>
+
+
+<script src="~/lib/multiselect/js/jquery.multi-select.js"></script>
+<link href="~/css/listbox.css" rel="stylesheet" />
+@*//#region slick grid scripts*@
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+
+
+<script src="~/lib/SlickGrid-6pac/lib/jquery.event.drag-2.3.0.js"></script>
+<script src="~/lib/SlickGrid-6pac/lib/firebugx.js"></script>
+<script src="~/lib/select2/dist/js/select2.js"></script>
+<script src="~/lib/SlickGrid-6pac/slick.core.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.checkboxselectcolumn.js"></script>
+<script src="~/lib/SlickGrid-6pac/controls/slick.columnpicker.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.autotooltips.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.checkboxselectcolumn.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.cellrangedecorator.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.cellrangeselector.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.cellcopymanager.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.cellselectionmodel.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.rowselectionmodel.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.cellrangedecorator.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.cellrangeselector.js"></script>
+<script src="~/lib/SlickGrid-6pac/plugins/slick.cellselectionmodel.js"></script>
+@*<script src="~/lib/SlickGrid-6pac/plugins/slick.autocolumnsize.js"></script>*@
+<script src="~/lib/SlickGrid-6pac/controls/slick.pager.js"></script>
+@*<script src="~/lib/slickgrid-bootstrap/bootstrap/bootstrap-slickgrid.js"></script>
+    <script src="~/lib/slickgrid-bootstrap/plugins/slick.responsiveness.js"></script>*@
+
+<script src="~/lib/SlickGrid-6pac/slick.formatters.js"></script>
+<script src="~/lib/SlickGrid-6pac/slick.editors.js"></script>
+<script src="~/lib/SlickGrid-6pac/slick.grid.js"></script>
+<script src="~/lib/SlickGrid-6pac/slick.dataview.js"></script>
+
+<script type="text/javascript" src="~/lib/SlickGrid-6pac/plugins/slick.cellrangeselector.js"></script>
+<script type="text/javascript" src="~/lib/SlickGrid-6pac/Plugins/slick.cellselectionmodel.js"></script>
+<script type="text/javascript" src="~/lib/SlickGrid-6pac/Plugins/slick.cellrangedecorator.js"></script>
+@*<script type="text/javascript" src="~/lib/ExcelStyle/underscore.js"></script>
+    <script type="text/javascript" src="~/lib/ExcelStyle/ext.headerfilter.js"></script>
+    <script type="text/javascript" src="~/lib/ExcelStyle/ext.overlays.js"></script>*@
+<script type="text/javascript" src="~/lib/SlickGrid-6pac/slick.compositeeditor.js"></script>
+
+<script src="~/lib/chosen/chosen.jquery.js"></script>
+
+<script src="~/lib/admin-lte/plugins/summernote/summernote.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"
+        asp-fallback-src="~/lib/print-js/src/js/print.js"
+        crossorigin="anonymous">
+</script>
+
+@*<script src="https://printjs-4de6.kxcdn.com/print.min.js"
+            asp-fallback-src="~/lib/print-js/src/js/print.js"
+            crossorigin="anonymous">
+    </script>
+    <script src="~/lib/jsrender/jsrender.js"></script>
+
+*@
+
+
+
+<script src="~/CustomScripts/CheckboxList.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<!--//tabulator   -->
+<script type="text/javascript" src="~/lib/tabulator/js/tabulator.js"></script>
+
+@*//AdminLTE*@
+<script src="~/lib/PACE/pace.min.js" asp-append-version="true"></script>
+<script src="~/js/adminlte.min.js" asp-append-version="true"></script>
+<script src="~/js/cookie.js" asp-append-version="true"></script>
+<script src="~/js/KeepMenu.js" asp-append-version="true"></script>
+
+
+<!-- Include jTable script file. -->
+<script src="~/lib/jTable/jquery.jtable.js" type="text/javascript"></script>
+
+
+<!-- Import Javascript files for validation engine (in Head section of HTML) -->
+<script type="text/javascript" src="~/lib/validationEngine/js/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="~/lib/validationEngine/js/languages/jquery.validationEngine-en.js"></script>
+<!-- select flage options-->
+<script src="~/lib/msdropdown/js/jquery.dd.min.js" type="text/javascript"></script>
+<script src="~/CustomScripts/CommonFunction.js"
+        asp-append-version="true"></script>
+<script src="~/CustomScripts/PrintFunctions.js" asp-append-version="true"></script>
+
+<script src="~/CustomScripts/TabulatorCustom.js" asp-append-version="true"></script>
+@*//#endregion*@
+
+<!-- calendar -->
+<!-- fullcalendar bundle -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js'></script>
+<script>
+        //#region flage options part
+        //#region preparing select for tblLanguages
+    //            var tblLanguagesSelect = {};/
+                //put data into array variable
+                //function handleData(responseData) {
+                 //   var currentCulture = '@requestCulture.RequestCulture.UICulture.Name';
+                    //console.log(currentCulture);
+                  //  var expecting = responseData.length;
+                  //  var indexCulture = 0;
+                    //pointer to ddl
+                  //  var oDropdown = $("#ddllanguages").msDropdown().data("dd");
+
+    //                responseData.forEach(function (entry, index) {
+    //                    oDropdown.add({
+    //                        text: entry.englishName, value: entry.name, description: entry.englishName, image: '/images/flags/16/' + entry.name + '.png', className: '', title: entry.name
+      //                  });
+        //                if (entry.name === currentCulture)
+          //                  indexCulture = index;
+            //        });
+
+              //      oDropdown.set("selectedIndex", indexCulture);
+                //}
+
+                //#region Fill in select for foriegn keys
+       //         $.ajax({
+        //            type: "GET",
+          //          url: "/Utils/tblLanguages/gettblLanguagesActiveList",
+                    //data: { tableID: 5 }, //in case we need ot send any parameter to function
+            //        contentType: "application/json;charset=utf-8",
+              //      dataType: "json",
+                  //  async: false,
+                //    success: function (result) {
+                 //       handleData(result);
+
+                   // },
+                   // error: function (response) {
+                     //   alert('langue load error');
+                   // }
+               // });
+                //#endregion
+
+                //#endregion
+        //#endregion
+</script>
+
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}

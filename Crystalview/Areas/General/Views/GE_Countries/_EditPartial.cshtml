@@ -1,0 +1,98 @@
+@model FinanceCore.DBModels.tblGE_Countries
+@using NonFactors.Mvc.Lookup
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Helpers
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "GE_Countries ..Edit";
+}
+
+    <!-- /End Tabs -->
+    <form asp-controller="GE_Countries"
+          asp-action="Edit"
+          asp-route-returnurl="@ViewBag.ReturnUrl"
+          asp-anti-forgery="false"
+          id="FullForm"
+          method="post">
+
+
+        <div class="box bg-white mb-4">
+            <div class="form box-body py-3 px-3">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="row justify-content-between d-flex">
+                    <div ID="dvCountryCode" class="col-sm-6">
+                        <div class="form-group has-feedback ">
+                            <label asp-for="CountryCode" class="control-label "></label>
+                            <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                            <input asp-for="CountryCode" asp-format="{0:N0}" class="form-control required " type="text" min="0" step="1" autocomplete="off" />
+                            <span asp-validation-for="CountryCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div ID="dvCountryNameA" class="col-sm-6">
+                        <div class="form-group has-feedback ">
+                            <label asp-for="CountryNameA" class="control-label "></label>
+                            <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                            <input asp-for="CountryNameA" class="form-control    required " />
+                            <span asp-validation-for="CountryNameA" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-between d-flex">
+                    <div ID="dvCountryNameE" class="col-sm-6">
+                        <div class="form-group has-feedback ">
+                            <label asp-for="CountryNameE" class="control-label "></label>
+                            <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                            <input asp-for="CountryNameE" class="form-control    required " />
+                            <span asp-validation-for="CountryNameE" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+@*<YYYYYYYYYYYYYYYY Details go here>*@
+<!-- modal placeholder-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Localizer["Confirm Save"]</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>@Localizer["Do you want to save changes GE_SubSystems "]@Model ?</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-controller="GE_Countries" type="button" class="btn" asp-action="Index">@Localizer["Back"]</a>
+                <button type="button" class="btn btn-warning">@Localizer["Save"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <span id="progress" class="text-center" style="display: none;">
+    <img src="~/images/ajax-loader.gif" alt="wiat" />
+    Wait..
+</span> *@
+
+
+@section Scripts {
+    <script>
+
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+ }
+

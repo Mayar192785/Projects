@@ -1,0 +1,29 @@
+﻿@*@using  FinanceCore.Globalization;*@
+@using FinanceCore.DBModels;
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+
+@using NonFactors.Mvc.Grid;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization;
+@using Newtonsoft.Json;
+
+
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = "Page  ..Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@* <div class="row">
+    Welcome to User page
+</div> *@
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>

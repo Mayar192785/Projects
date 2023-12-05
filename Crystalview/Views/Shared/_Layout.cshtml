@@ -1,0 +1,180 @@
+﻿@using System.Globalization
+@using Global.Models
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization;
+@using System.Threading;
+@using WTEG.Core.Tools;
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@inject IViewLocalizer Localizer
+
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en" dir="ltr"  @* lang="@CultureHelper.GetCurrentNeutralCulture()" dir="@(CultureHelper.IsRighToLeft() ? "rtl" : "ltr")" *@>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <title>  @Configuration.GetSection("AppInfo")["Name"]</title>
+@*     @if (CultureHelper.IsRighToLeft())
+    {
+        await Html.RenderPartialAsync("_CssPartialRTL");
+    }
+    else
+    {
+        await Html.RenderPartialAsync("_CssPartial");
+    } *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="~/css/styles.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/all.minn.css" rel="stylesheet">
+    <!-- Theme style -->
+    <link href="~/css/site.css" rel="stylesheet">
+    <link href="~/css/adminlte.min.css" rel="stylesheet" id="ltr-stylesheet">
+    <link href="~/css/custom.css" rel="stylesheet" id="rtl-stylesheet" disabled />
+    <!--AdminLTE RTL-->
+    <link href="https://cdn.jsdelivr.net/npm/admin-lte-rtl-sp@3.1.0-pre/dist/css/adminlte.min.css" rel="stylesheet">
+    <!-- Bootstrap version stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        @await Component.InvokeAsync("Header")
+        @if (IsSectionDefined("TopMenu"))
+        {
+            <div id="topMenuId">
+                @RenderSection("TopMenu")
+            </div>
+        }
+        <!-- Left side column. contains the logo and sidebar -->
+        @await Component.InvokeAsync("Menubar")
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" >
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        @await Component.InvokeAsync("PageHeader")
+                        @await Component.InvokeAsync("Breadcrumb")
+                        @await Component.InvokeAsync("PageAlert")
+                    </div>
+                </div>
+            </div>
+            <!-- Main content -->
+            <section class="content py-3 px-3">
+                <!-- Your Page Content Here -->
+                @* <partial name="MvcLookup/_Dialog" /> *@
+
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        @await Component.InvokeAsync("Footer")
+        <!-- Control Sidebar -->
+        @await Component.InvokeAsync("ControlSidebar")
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+    Both of these plugins are recommended to enhance the
+    user experience. Slimscroll is required when using the
+    fixed layout. -->
+@*     @{
+        await Html.RenderPartialAsync("_JsPartial");
+    }
+ *@
+    @RenderSection("Scripts", required: false)
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/js/scripts.js"></script>
+    <script src="~/js/site.js"></script>
+   @*  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> *@
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.3.0/mdb.min.js"></script>
+    <script>
+        //#region mvc lookup part and transaltion
+
+        // if (typeof MvcLookupFilter === 'undefined' || MvcLookupFilter === null) {
+
+        // document.querySelectorAll(".mvc-lookup").forEach(element => new MvcLookup(element));
+        // }
+        // MvcLookup.prototype.lang = {
+        //     error:  '@Localizer["Error"]',
+        //     noData: '@Localizer["noData"]',
+        //     select: '@Localizer["Select"] ({0})',
+        //     search: '@Localizer["Search"]'
+        // };
+        //#endregion
+
+        //#region mvc grid intialize
+        // when used if the paging is not owrking
+        // if (typeof MvcGrid === 'undefined' || MvcGrid === null)
+        // document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+        //[].forEach.call(document.getElementsByClassName('mvc-grid'), function (element) {
+        //               new MvcGrid(element);
+        //           });
+        //#endregion
+
+        //#region chnage skin based on config file
+        // Skin switcher
+        // var currentSkin = 'skin-gray';
+        // var newSkin = '@(new AppSiteSettings().LoadFromConfiguration().DefaultTheme)';
+        // $('body').removeClass(currentSkin);
+        // $('body').addClass(newSkin);
+        // currentSkin = newSkin;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const htmlElement = document.documentElement;
+
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'dir') {
+                        const newDirValue = mutation.target.getAttribute('dir');
+                        toggleStylesheet(newDirValue);
+                    }
+                });
+            });
+
+            observer.observe(htmlElement, { attributes: true });
+
+            function toggleStylesheet(dir) {
+                const ltrStylesheet = document.getElementById('ltr-stylesheet');
+                const rtlStylesheet = document.getElementById('rtl-stylesheet');
+
+                if (dir === 'rtl') {
+                    ltrStylesheet.disabled = true;
+                    rtlStylesheet.disabled = false;
+                } else {
+                    ltrStylesheet.disabled = false;
+                    rtlStylesheet.disabled = true;
+                }
+            }
+        });
+
+
+        //#endregion
+    </script>
+</body>
+
+</html>
+
+

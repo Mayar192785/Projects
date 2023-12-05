@@ -1,0 +1,245 @@
+﻿@model IEnumerable<FinanceCore.DBModels.tblGE_Cities>
+
+@using FinanceCore.DBModels;
+@using Global.Globalization;
+@using Global.Models;
+@using Global.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Services;
+
+@inject IViewLocalizer Localizer
+
+<style>
+    .btn.btn-danger{
+        color:#fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+    .btn.btn-danger:hover{
+        color:#fff;
+    }
+</style>
+@* <div class="row mx-5 my-auto">
+    <div class="col-lg-6 btns">
+        <div class="widget-buttons popup">
+            <span id="GridConfigGE_Cities" class="fa fa-cog" onclick="$('.target').toggle()"></span>
+            <div class="mvc-grid-popup mvc-grid-configuration target" id="columnsconfigGE_Cities" style="display: none;" tabindex="-2000">
+                <div class="popup-arrow" style="left: 9px;"></div>
+                <div class="popup-content" id="checkBundleGE_Cities">
+                </div>
+            </div>
+        </div>
+        <a class="btn mb-3" id="btnSaveGE_Cities" data-toggle="tooltip" data-placement="top" title="@Localizer["tipchangedData"]">
+            @Localizer["btnSave"]
+            <span class="far fa-save mx-1"></span>
+
+        </a>
+        <a class="btn mb-3 Alt-A " id="btnAddGE_Cities" data-toggle="tooltip" data-placement="top" title="@Localizer["tipAddNewRowDefaultValues"]">
+            @Localizer["btnAdd"]
+            <span class="fas fa-plus mx-1"></span>
+        </a>
+        <a class="btn btn-danger mb-3" id="btnDeleteSelectedGE_Cities" data-toggle="tooltip" data-placement="top" title="@Localizer["tipDeleteAllSelected"]">
+            @Localizer["btnDelete"]
+            <span class="fa fa-trash fa-lg mx-1"></span>
+
+        </a>
+    </div> 
+</div>
+<br>
+
+<br> *@
+<!-- This script got from frontendfreecode.com -->
+@* <div class="container bg-white mb-5 mx-auto w-100"> *@
+@*     <div class="row">
+        <h2>simple GRID</h2>
+    </div> *@
+    <div class="row">
+        @* <h3 class="text-center text-primary">Persons</h3> *@
+        <div class="col-md-12">
+            <table class="table table-hover" id="worked">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Telephone</th>
+                        <th>
+                            <button type="button" class="btn btn-blue add-row">+</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" />
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" />
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger delete-row">-</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+@* </div> *@
+
+@* <div id="GE_CitiesGrid" class="col-lg-12"></div> *@
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in' role='dialog'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        //#region standard set of options and vars always there
+        //alert('no where yet');
+        // var GE_CitieseditedRows = [];
+        // // grid fuil loptions , editable in edit only
+        // var Editable = window.location.pathname.toLowerCase().indexOf("/edit", 1) !== -1;
+        // // diaable buttons also as they are not needed
+        // if (!Editable) {
+        //     $('#btnSaveGE_Cities').hide();
+        //     $('#btnAddGE_Cities').hide();
+        //     $('#btnDeleteSelectedGE_Cities').hide();
+        // }
+        // //#endregion
+        // //#region foriegn key stuff
+
+        // //#endregion
+
+        // //#region preapre table part with columns
+
+        // //Build Tabulator
+        // var GE_CitiesGrid = new Tabulator("#GE_CitiesGrid", {
+        //     ajaxURL: "/General/GE_Cities/getGE_CitiesFilteredList",
+        //     ajaxParams: { filterColumn: "value1", filterValue: getCoreid() }, //ajax parameters
+        //     height: "311px",
+        //     layout: "fitColumns",
+        //     placeholder: "No Data Set",
+        //     headerHozAlign: "center",
+        //     tooltipsHeader: function (column) { return GetToolTip(column); },
+        //     //    responsiveLayout: true,
+        //     persistenceMode: "cookie",
+        //     persistence: {
+        //         sort: true,
+        //         filter: true,
+        //         columns: ["width", "visible", "frozen"],
+        //     },
+        //     persistenceID: "GE_CitiesGrid",
+        //     //    responsiveLayout: true,
+        //     index: "id",
+        //     columns: [
+        //         {
+        //             title: "Row Selection",
+        //             formatter: "rowSelection", titleFormatter: "rowSelection", hozAlign: "center", width: 40, headerSort: false, cellClick: function (e, cell) {
+        //                 cell.getRow().toggleSelect();
+        //             }, visible: Editable
+        //         },
+        //         { title: "@Localizer["DeleteRow"]", formatter: DeleteIcon, width: 40, hozAlign: "center", cellClick: function (e, cell) { GE_CitiesDelete(cell.getRow().getData().id); }, headerSort: false, tooltip: "@Localizer["DeleteSingleRow"]", visible: Editable },
+        //         { title: "@Localizer["CancelAllEdits"]", formatter: CancelIcon, width: 40, hozAlign: "center", cellClick: function (e, cell) { CancelEdit(cell, "@Localizer["ConfirmUndo"]"); }, headerSort: false, tooltip: "@Localizer["CancelRowEdits"]", visible: Editable },
+        //         // { title: "@Localizer["CountryCode"]", field: "countryCode", headerToolTip: "@Localizer["CountryCodetip"]", validator: "required", editor: "number", sorter: "number", minWidth: 50, editable: Editable },
+        //         { title: "@Localizer["CityCode"]", field: "cityCode", headerToolTip: "@Localizer["CityCodetip"]", validator: "required", editor: "number", sorter: "number", minWidth: 50, editable: Editable },
+        //         { title: "@Localizer["CityNameA"]", field: "cityNameA", headerToolTip: "@Localizer["CityNameAtip"]", editor: "input", sorter: "string", minWidth: 120, editable: Editable },
+        //         { title: "@Localizer["CityNameE"]", field: "cityNameE", headerToolTip: "@Localizer["CityNameEtip"]", editor: "input", sorter: "string", minWidth: 120, editable: Editable },
+        //     ],
+        //     dataChanged: function (data) {
+        //         //data - the updated table data
+        //         GE_CitieseditedRows = data;//.push(data);
+        //         // console.log(GE_CitieseditedRows);
+        //     },
+        // });
+        // //#region save table config part
+        // //fill in li for the config
+        // fillInColumns(GE_CitiesGrid, "GE_CitiesGrid");
+
+        // //#endregion
+        // //#endregion
+
+        // //#endregion
+        // //#region add new row to array on add row
+        // //Add row on "Add Row" button click
+        // $("#btnAddGE_Cities").click(function () {
+        //     //fill in basic data
+        //     var id = Math.floor((Math.random() * 10000) + 1) * -1;
+        //     var parentId = getLastPartofURL();
+        //     GE_CitiesGrid.addRow({ id: id, cityCode: parentId countryCode: 0, cityCode: 0, cityNameA: null, cityNameE: null, });
+        //     $('.mvc-lookup-input').val('');
+        // });
+
+        // document.addEventListener("keydown", function (event) {
+        //     if (event.altKey && event.key === 'a') {
+        //         document.getElementById("btnAddGE_Cities").click();
+        //     }
+        // })
+        // //#endregion
+        // //#region send data back t oserver
+        // $('#btnSaveGE_Cities').click(function () {
+
+        //     var UpdatedRows = JSON.stringify(GE_CitiesGrid.getData());
+        //     //  var UpdatedRows = JSON.stringify(GE_CitieseditedRows);
+        //     //console.log(UpdatedRows);
+        //     // UpdatedRows = UpdatedRows.replace(/null/g, "0");
+
+        //     $.ajax({
+        //         type: "POST",
+        //         contentType: "application/json; charset=utf-8",
+        //         url: "/General/GE_Cities/Update",
+        //         //traditional: true,   //must be tru for arrray to be send
+        //         data: UpdatedRows,
+        //         dataType: "json",
+        //         success: function (data) {
+        //             if (data.success) {
+        //                 // here comes your response after calling the server
+        //                 alert('@Localizer["SaveSuccess"]');
+        //                 //window.location.reload();
+        //                 GE_CitiesGrid.setData();
+        //             }
+        //             else {
+        //                 alert(data.responseText);
+        //             }
+        //         },
+        //         error: function (jqXHR, textStatus, errorThrown) {
+        //             alert("error : " + jqXHR.responseText);
+        //         }
+        //     });
+        // });
+        // //#endregion
+
+        // //#region delete row
+        // function GE_CitiesDelete(rowID) {
+        //     if (rowID <= 0) {
+        //         GE_CitiesGrid.deleteRow(rowID);
+        //     }
+        //     else
+        //         DeleteRow(rowID, "/General/GE_Cities/Delete", "@Localizer["ConfirmDelete"]", "@Localizer["DeleteSuccess"]", "@Localizer["DeleteFail"]", true);
+
+        // };
+
+        // //#endregion
+        // //#region deleted all selected
+        // $('#btnDeleteSelectedGE_Cities').on('click', function () {
+        //     DeleteSelected(GE_CitiesGrid, "/General/GE_Cities/DeleteSelected", "@Localizer["ConfirmDelete"]", '@Localizer["DeleteSuccess"]', "@Localizer["DeleteFail"]", true)
+
+
+        // });
+
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

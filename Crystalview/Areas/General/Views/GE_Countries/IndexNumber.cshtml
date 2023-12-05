@@ -1,0 +1,109 @@
+@model IEnumerable<FinanceCore.DBModels.tblGE_Countries>
+@*@using  FinanceCore.Globalization;*@
+@using FinanceCore.DBModels;
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@*@model IEnumerable<FinanceCore.DBModels.GE_Countries>*@
+@using NonFactors.Mvc.Grid;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@using Microsoft.Extensions.Localization;
+@using Newtonsoft.Json;
+
+
+
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = "GE_Countries ..Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card-body">
+    <form asp-controller="GE_Countries"
+          asp-action="IndexNumber"
+          asp-route-returnurl="@ViewBag.ReturnUrl"
+          asp-anti-forgery="false"
+          id="FullForm"
+          method="post">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="@Localizer["SearchByNumber"]" name="txtSearch" value="@ViewBag.filter">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                @if (await new syPageRolesVM().pageCanCreate(Context.Request.Path, Context.User.Identity.Name))
+                {
+                    <a class="btn btn-primary pull-right" id="btnCreate" asp-action="Create">
+                        @Localizer["CreateBtn"]
+                        <span class="fas fa-plus"></span>
+
+                    </a>
+
+                }
+                <div class="widget-buttons pull-left">
+                    <span id="GridConfigure" class="fa fa-cog"></span>
+                </div>
+            </div>
+        </div>
+
+        @if (Model != null)
+        {
+            <div class="widget-content">
+
+                @(Html
+                    .Grid(Model)
+                    .Build(columns =>
+                    {
+
+                        //columns.Add(model => Html.CheckBox("Check_" + model.CountryCode)).Titled(Html.CheckBox("CheckAll"));
+                        columns.Add(model => model.CountryCode).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["CountryCode"]).Formatted("{0:N0}");
+                        columns.Add(model => model.CountryNameA).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["CountryNameA"]);
+                        columns.Add(model => model.CountryNameE).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["CountryNameE"]);
+
+                        columns.Add(model => $"<a data-id='{model.CountryCode}' href='/General/GE_Countries/details/{model.CountryCode}' id='{model.CountryCode}' title='{@Localizer["DetailsButton"].Value}'> <span class='fa fa-list-alt fa-lg'> </span> </a>").Encoded(false).Css("action");
+                        if (new syPageRolesVM().pageCanEdit(Context.Request.Path, Context.User.Identity.Name).Result)
+                            columns.Add(model => $"<a data-id='{model.CountryCode}' href='/General/GE_Countries/edit/{model.CountryCode}' id='{model.CountryCode}' title='{@Localizer["EditButton"].Value}'> <span class='fas fa-edit fa-lg'> </span> </a>").Encoded(false).Css("action");
+                        if (new syPageRolesVM().pageCanDelete(Context.Request.Path, Context.User.Identity.Name).Result)
+                            columns.Add(model => $"<a data-id='{model.CountryCode}' data-modal='' href='/General/GE_Countries/delete/{model.CountryCode}' id='{model.CountryCode}' title='{@Localizer["DeleteButton"].Value}'> <span class='fa fa-trash  fa-lg'> </span> </a>").Encoded(false).Css("action");
+                    })
+                    .Empty(@Localizer["GridEmptyData"].Value)
+                    //.Configure (GE_CountriesgridConfig)
+                    .Filterable()
+                    .Sortable()
+                    .Named("GE_Countriesgrid")
+                    .Id("GE_Countriesgrid")
+                    //.Using(GridProcessingMode.Manual)
+                    .Pageable(pager =>
+                    {
+                        // pager.TotalRows = ViewBag.TotalRows;
+                        pager.PageSizes = new Dictionary<Int32, String> { { 0, "All" }, { 25, "25" }, { 40, "40" } };
+                        pager.ShowPageSizes = true;
+                        pager.PagesToDisplay = 5;
+                        pager.CurrentPage = 1;
+                        pager.RowsPerPage = 25;
+                    })
+                    )
+            </div>
+        }
+    </form>
+
+</div>
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+    </script>
+}

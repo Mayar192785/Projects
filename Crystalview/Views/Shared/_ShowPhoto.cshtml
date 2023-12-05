@@ -1,0 +1,20 @@
+﻿@model Global.Models.ImageViewModel
+
+@using System.IO
+@using Global.Models
+@using Global.Helpers;
+
+@{
+    ViewData["Title"] = "ShowImage";
+}
+
+
+ 
+
+
+@*
+    find a way to check if the extension has . or not and if not add it
+    ('jpeg')replace(/([^.])$/, '$1.');-- at the end
+    ('jpeg').replace(/([^.])^/, '^.')); -- return jpeg
+
+*@

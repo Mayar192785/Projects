@@ -1,0 +1,62 @@
+@model FinanceCore.DBModels.tblGE_Countries
+@*@using  FinanceCore.Globalization;*@
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Services;
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "GE_Countries ..Details";
+}
+
+<div class="box bg-white mb-4">
+    <div class="form box-body px-3 py-3">
+        <div class="row justify-content-between d-flex">
+            <div ID="dvCountryCode" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="CountryCode" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="CountryCode" asp-format="{0:N0}" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvCountryNameA" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="CountryNameA" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="CountryNameA" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvCountryNameE" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="CountryNameE" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="CountryNameE" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*     <!-- modal placeholder-->
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div> *@
+    @section scripts{
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }

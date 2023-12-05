@@ -1,0 +1,60 @@
+﻿@using NonFactors.Mvc.Grid;
+@model IGridPager
+@{
+    Int32 totalPages = Model.TotalPages;
+    Int32 currentPage = Model.CurrentPage;
+    Int32 firstDisplayPage = Model.FirstDisplayPage;
+}
+<div class="mvc-grid-pager @Model.CssClasses">
+    @if (totalPages > 1)
+    {
+        <ul class="pagination">
+            @if (currentPage > 1)
+            {
+                <li data-page="1"><span>&laquo;</span></li>
+                <li data-page="@(currentPage - 1)"><span>&lsaquo;</span></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&laquo;</span></li>
+                <li class="disabled"><span>&lsaquo;</span></li>
+            }
+            @for (Int32 ShownPage = firstDisplayPage; ShownPage <= totalPages && ShownPage < firstDisplayPage + Model.PagesToDisplay; ShownPage++)
+            {
+                if (ShownPage == currentPage)
+                {
+                    <li class="active" data-page="@ShownPage"><span>@ShownPage</span></li>
+                }
+                else
+                {
+                    <li data-page="@ShownPage"><span>@ShownPage</span></li>
+                }
+            }
+            @if (currentPage < totalPages)
+            {
+                <li data-page="@(currentPage + 1)"><span>&rsaquo;</span></li>
+                <li data-page="@totalPages"><span>&raquo;</span></li>
+            }
+            else
+            {
+                <li class="disabled"><span>&rsaquo;</span></li>
+                <li class="disabled"><span>&raquo;</span></li>
+            }
+        </ul>
+        <div class="rows-per-page">
+            <select class="mvc-grid-pager-rows">
+                @for (Int32 i = 5; i <= 30; i++)
+                {
+                    if (Model.RowsPerPage == ((i % 5)))
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+            </select>
+        </div>
+    }
+</div>

@@ -1,0 +1,112 @@
+@model IEnumerable<FinanceCore.DBModels.tblGE_SubSystems>
+@*@using  FinanceCore.Globalization;*@
+@using FinanceCore.DBModels;
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@*@model IEnumerable<FinanceCore.DBModels.GE_SubSystems>*@
+@using NonFactors.Mvc.Grid;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using WTEG.SqlLocalizer.DbStringLocalizer;
+@using Microsoft.Extensions.Localization;
+@using Newtonsoft.Json;
+
+@using WTEG.SqlLocalizer;
+
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = "GE_SubSystems ..Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="card-body">
+    <form asp-controller="GE_SubSystems"
+          asp-action="IndexNumber"
+          asp-route-returnurl="@ViewBag.ReturnUrl"
+          asp-anti-forgery="false"
+          id="FullForm"
+          method="post">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="@Localizer["SearchByNumber"]" name="txtSearch" value="@ViewBag.filter">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+
+                {
+                <a class="btn btn-primary pull-right" id="btnCreate" asp-action="Create">
+                    @Localizer["CreateBtn"]
+                    <span class="fas fa-plus"></span>
+
+                </a>
+
+                }
+                <div class="widget-buttons pull-left">
+                    <span id="GridConfigure" class="fa fa-cog"></span>
+                </div>
+            </div>
+        </div>
+
+        @if (Model != null)
+        {
+            <div class="widget-content">
+
+                @(Html
+                    .Grid(Model)
+                    .Build(columns =>
+                    {
+
+                        //columns.Add(model => Html.CheckBox("Check_" + model.ID)).Titled(Html.CheckBox("CheckAll"));
+                        columns.Add(model => model.ID).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["ID"]).Formatted("{0:N0}");
+                        columns.Add(model => model.SubSystemName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["SubSystemName"]);
+                        columns.Add(model => model.SubSystemArabicName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["SubSystemArabicName"]);
+                        columns.Add(model => model.SubSystemShortName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["SubSystemShortName"]);
+                        columns.Add(model => model.IsActive).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["IsActive"]).RenderedAs(model => model.IsActive == true ? string.Format("<img src=\"{0}\" alt=\"True\"/>", Url.Content("~/images/checked.png")) : string.Format("<img src=\"{0}\" alt=\"False\"/>", Url.Content("~/images/unchecked.png"))).Encoded(false);
+
+                        columns.Add(model => $"<a data-id='{model.ID}' href='/General/GE_SubSystems/details/{model.ID}' id='{model.ID}' title='{@Localizer["DetailsButton"].Value}'> <span class='fa fa-list-alt fa-lg'> </span> </a>").Encoded(false).Css("action");
+                        columns.Add(model => $"<a data-id='{model.ID}' href='/General/GE_SubSystems/edit/{model.ID}' id='{model.ID}' title='{@Localizer["EditButton"].Value}'> <span class='fas fa-edit fa-lg'> </span> </a>").Encoded(false).Css("action");
+                        columns.Add(model => $"<a data-id='{model.ID}' data-modal='' href='/General/GE_SubSystems/delete/{model.ID}' id='{model.ID}' title='{@Localizer["DeleteButton"].Value}'> <span class='fa fa-trash  fa-lg'> </span> </a>").Encoded(false).Css("action");
+                    })
+                    .Empty(@Localizer["GridEmptyData"].Value)
+                    //.Configure (GE_SubSystemsgridConfig)
+                    .Filterable()
+                    .Sortable()
+                    .Named("GE_SubSystemsgrid")
+                    .Id("GE_SubSystemsgrid")
+                    //.Using(GridProcessingMode.Manual)
+                    .Pageable(pager =>
+                    {
+                        // pager.TotalRows = ViewBag.TotalRows;
+                        pager.PageSizes = new Dictionary<Int32, String> { { 0, "All" }, { 25, "25" }, { 40, "40" } };
+                        pager.ShowPageSizes = true;
+                        pager.PagesToDisplay = 5;
+                        pager.CurrentPage = 1;
+                        pager.RowsPerPage = 25;
+                    })
+                    )
+            </div>
+        }
+    </form>
+
+</div>
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+    </script>
+}

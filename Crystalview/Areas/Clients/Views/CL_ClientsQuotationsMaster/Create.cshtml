@@ -1,0 +1,445 @@
+@model FinanceCore.DBModels.tblCL_ClientsQuotationsMaster
+@using NonFactors.Mvc.Lookup
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Helpers
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "CL_ClientsQuotationsMaster ..Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn {
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem
+    }
+
+    #nav-tab .nav-link {
+        border-color: #094766;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+</style>
+
+
+<div class="row mx-5 my-auto">
+    <!-- /Start Tabs -->
+    <div class="col-md-12">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link shadow shadow-bottom-0 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["BasicDetails"]</button>
+            </div>
+        </nav>
+        <div class="tab-content  mx-auto my-auto py-auto">
+
+            <div class="active tab-pane" id="details">
+                <!-- /End Tabs -->
+                <form asp-controller="CL_ClientsQuotationsMaster"
+                      asp-action="Create"
+                      asp-route-returnurl="@ViewBag.ReturnUrl"
+                      asp-anti-forgery="false"
+                      id="FullForm"
+                      method="post">
+                    <div class="box shadow mb-4">
+                        <div class="form box-body py-3 px-3">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvBranchCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="BranchCode" class="control-label "></label>
+                                        <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                                        @*     asp-items="(SelectList)new GE_BranchsVM().GetGE_BranchsForLkp()"> *@
+                                        <select asp-for="BranchCode" class="form-control select2-select  required"
+                                                asp-items="await new GE_BranchsVM().GetGE_BranchsForLkpAsync()">
+                                            <option disabled selected>--- @Localizer["PleaseSelect"] ---</option>
+                                        </select>
+
+                                        <span asp-validation-for="BranchCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvClientQuotationNo" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="ClientQuotationNo" class="control-label "></label>
+                                        <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                                        <input asp-for="ClientQuotationNo" asp-format="{0:N0}" class="form-control required " value="1" type="text" min="0" step="1" autocomplete="off" />
+                                        <span asp-validation-for="ClientQuotationNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvRefQuotationNo" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="RefQuotationNo" class="control-label "></label>
+                                        <input asp-for="RefQuotationNo" class="form-control    " />
+                                        <span asp-validation-for="RefQuotationNo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvSalesRepName" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="SalesRepName" class="control-label "></label>
+                                        <input asp-for="SalesRepName" class="form-control    " />
+                                        <span asp-validation-for="SalesRepName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvOrderDate" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="OrderDate" class="control-label "></label>
+                                        <div class="input-group ">
+                                            <input asp-for="OrderDate" type="text" class="form-control   inputDistance  date-picker " />
+                                            <span class="input-group-addon"> <i class="far fa-calendar-alt fa-lg mx-2"></i> </span>
+                                        </div>
+                                        <span asp-validation-for="OrderDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvJobName" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="JobName" class="control-label "></label>
+                                        <input asp-for="JobName" class="form-control    " />
+                                        <span asp-validation-for="JobName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvCityCountry" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="CityCountry" class="control-label "></label>
+                                        <input asp-for="CityCountry" class="form-control    " />
+                                        <span asp-validation-for="CityCountry" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvClientCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="ClientCode" class="control-label "></label>
+                                        @*     asp-items="(SelectList)new CL_ClientsDefinitionVM().GetCL_ClientsDefinitionForLkp()"> *@
+                                        <select asp-for="ClientCode" class="form-control select2-select "
+                                                asp-items="await new CL_ClientsDefinitionVM().GetCL_ClientsDefinitionForLkpAsync()">
+                                            <option disabled selected>--- @Localizer["PleaseSelect"] ---</option>
+                                        </select>
+
+                                        <span asp-validation-for="ClientCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvNewClientName" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="NewClientName" class="control-label "></label>
+                                        <input asp-for="NewClientName" class="form-control    " />
+                                        <span asp-validation-for="NewClientName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvResponsMan" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="ResponsMan" class="control-label "></label>
+                                        <input asp-for="ResponsMan" class="form-control    " />
+                                        <span asp-validation-for="ResponsMan" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvPaymentCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="PaymentCode" class="control-label "></label>
+                                        @*     asp-items="(SelectList)new CL_PaymentConditionVM().GetCL_PaymentConditionForLkp()"> *@
+                                        <select asp-for="PaymentCode" class="form-control select2-select "
+                                                asp-items="await new CL_PaymentConditionVM().GetCL_PaymentConditionForLkpAsync()">
+                                            <option disabled selected>--- @Localizer["PleaseSelect"] ---</option>
+                                        </select>
+
+                                        <span asp-validation-for="PaymentCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvTransportCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="TransportCode" class="control-label "></label>
+                                        <input asp-for="TransportCode" class="form-control    " />
+                                        <span asp-validation-for="TransportCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvCurrencyCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="CurrencyCode" class="control-label "></label>
+                                        @*     asp-items="(SelectList)new GE_CurrenciesVM().GetGE_CurrenciesForLkp()"> *@
+                                        <select asp-for="CurrencyCode" class="form-control select2-select "
+                                                asp-items="await new GE_CurrenciesVM().GetGE_CurrenciesForLkpAsync()">
+                                            <option disabled selected>--- @Localizer["PleaseSelect"] ---</option>
+                                        </select>
+
+                                        <span asp-validation-for="CurrencyCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvMemo" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Memo" class="control-label "></label>
+                                        <input asp-for="Memo" class="form-control    " />
+                                        <span asp-validation-for="Memo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvValidityNo1" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="ValidityNo1" class="control-label "></label>
+                                        <input asp-for="ValidityNo1" class="form-control    " />
+                                        <span asp-validation-for="ValidityNo1" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvValidityNo2" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="ValidityNo2" class="control-label "></label>
+                                        <input asp-for="ValidityNo2" class="form-control    " />
+                                        <span asp-validation-for="ValidityNo2" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvPaymentNo1" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="PaymentNo1" class="control-label "></label>
+                                        <input asp-for="PaymentNo1" class="form-control    " />
+                                        <span asp-validation-for="PaymentNo1" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvPaymentNo2" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="PaymentNo2" class="control-label "></label>
+                                        <input asp-for="PaymentNo2" class="form-control    " />
+                                        <span asp-validation-for="PaymentNo2" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvStarageArea" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="StarageArea" class="control-label "></label>
+                                        <input asp-for="StarageArea" class="form-control    " />
+                                        <span asp-validation-for="StarageArea" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvDelivery" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Delivery" class="control-label "></label>
+                                        <input asp-for="Delivery" class="form-control    " />
+                                        <span asp-validation-for="Delivery" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvPrices" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Prices" class="control-label "></label>
+                                        <input asp-for="Prices" class="form-control    " />
+                                        <span asp-validation-for="Prices" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvQuotationStatus" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="QuotationStatus" class="control-label "></label>
+                                        <input asp-for="QuotationStatus" asp-format="{0:N0}" class="form-control " value="1" type="text" min="0" step="1" autocomplete="off" />
+                                        <span asp-validation-for="QuotationStatus" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvTotalQuotation" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="TotalQuotation" class="control-label "></label>
+                                        <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                                        <input asp-for="TotalQuotation" class="form-control required " value="1.0" type="text" min="0" step="0.01" autocomplete="off" />
+                                        <span asp-validation-for="TotalQuotation" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvStatus" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Status" class="control-label "></label>
+                                        <input asp-for="Status" asp-format="{0:N0}" class="form-control " value="1" type="text" min="0" step="1" autocomplete="off" />
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvTimeStamp" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="TimeStamp" class="control-label "></label>
+                                        <div class="input-group ">
+                                            <input asp-for="TimeStamp" type="text" class="form-control   inputDistance  date-picker " />
+                                            <span class="input-group-addon"> <i class="far fa-calendar-alt fa-lg"></i> </span>
+                                        </div>
+                                        <span asp-validation-for="TimeStamp" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" form-group col-sm-12 btns my-3">
+                                <button class="btn btn-primary" type="submit"> @Localizer["btnSave"] <i class="far fa-save"></i>  </button>
+                                <a asp-controller="CL_ClientsQuotationsMaster" class="btn btn-primary" asp-action="Index">@Localizer["BackBtn"] <i class="fas fa-angle-double-left"></i></a>
+                                <!------print button go here---->
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@*<YYYYYYYYYYYYYYYY Details go here>*@
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+<span id="progress" class="text-center" style="display: none;">
+    <img src="~/images/ajax-loader.gif" alt="wiat" />
+    Wait..
+</span>
+
+
+@section Scripts {
+    <script>
+
+        const ClientCodelookup = document.querySelector(".mvc-lookup");
+        document.addEventListener("lookupselect", e => {
+            var data = e.detail.data;
+            if (data.length > 0) {
+                $('#txtClientCode').val(data[0].ClientQuotationNo != null ? data[0].ClientQuotationNo : '');
+                $('#lblClientCodeName').text(data[0].Name != null ? data[0].Name : '');
+                $('#txtClientCode').focus();
+            }
+        });
+        $("#txtClientCode").blur(function (e) {
+            if ($("#txtClientCode").val() !== "") {
+                var ID = $("#txtClientCode").val();
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    //url: "/Clients/CL_ClientsQuotationsMaster/GetCL_ClientsDefinitionName", //will generate erro t ochange it to search table name
+                    url: "/Clients/CL_ClientsDefinition/GetCL_ClientsDefinitionName", //will generate erro t ochange it to search table name
+                    data: { ID: ID },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#lblClientCodeName").text(data);
+                    },
+                    error: function (err) {
+                        alert("error : " + err);
+                    }
+                });
+            }
+            return false;
+        });
+
+        const PaymentCodelookup = document.querySelector(".mvc-lookup");
+        document.addEventListener("lookupselect", e => {
+            var data = e.detail.data;
+            if (data.length > 0) {
+                $('#txtPaymentCode').val(data[0].ClientQuotationNo != null ? data[0].ClientQuotationNo : '');
+                $('#lblPaymentCodeName').text(data[0].Name != null ? data[0].Name : '');
+                $('#txtPaymentCode').focus();
+            }
+        });
+        $("#txtPaymentCode").blur(function (e) {
+            if ($("#txtPaymentCode").val() !== "") {
+                var ID = $("#txtPaymentCode").val();
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    //url: "/Clients/CL_ClientsQuotationsMaster/GetCL_PaymentConditionName", //will generate erro t ochange it to search table name
+                    url: "/Clients/CL_PaymentCondition/GetCL_PaymentConditionName", //will generate erro t ochange it to search table name
+                    data: { ID: ID },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#lblPaymentCodeName").text(data);
+                    },
+                    error: function (err) {
+                        alert("error : " + err);
+                    }
+                });
+            }
+            return false;
+        });
+
+        const BranchCodelookup = document.querySelector(".mvc-lookup");
+        document.addEventListener("lookupselect", e => {
+            var data = e.detail.data;
+            if (data.length > 0) {
+                $('#txtBranchCode').val(data[0].ClientQuotationNo != null ? data[0].ClientQuotationNo : '');
+                $('#lblBranchCodeName').text(data[0].Name != null ? data[0].Name : '');
+                $('#txtBranchCode').focus();
+            }
+        });
+        $("#txtBranchCode").blur(function (e) {
+            if ($("#txtBranchCode").val() !== "") {
+                var ID = $("#txtBranchCode").val();
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    //url: "/Clients/CL_ClientsQuotationsMaster/GetGE_BranchsName", //will generate erro t ochange it to search table name
+                    url: "/Clients/GE_Branchs/GetGE_BranchsName", //will generate erro t ochange it to search table name
+                    data: { ID: ID },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#lblBranchCodeName").text(data);
+                    },
+                    error: function (err) {
+                        alert("error : " + err);
+                    }
+                });
+            }
+            return false;
+        });
+
+        const CurrencyCodelookup = document.querySelector(".mvc-lookup");
+        document.addEventListener("lookupselect", e => {
+            var data = e.detail.data;
+            if (data.length > 0) {
+                $('#txtCurrencyCode').val(data[0].ClientQuotationNo != null ? data[0].ClientQuotationNo : '');
+                $('#lblCurrencyCodeName').text(data[0].Name != null ? data[0].Name : '');
+                $('#txtCurrencyCode').focus();
+            }
+        });
+        $("#txtCurrencyCode").blur(function (e) {
+            if ($("#txtCurrencyCode").val() !== "") {
+                var ID = $("#txtCurrencyCode").val();
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    //url: "/Clients/CL_ClientsQuotationsMaster/GetGE_CurrenciesName", //will generate erro t ochange it to search table name
+                    url: "/Clients/GE_Currencies/GetGE_CurrenciesName", //will generate erro t ochange it to search table name
+                    data: { ID: ID },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#lblCurrencyCodeName").text(data);
+                    },
+                    error: function (err) {
+                        alert("error : " + err);
+                    }
+                });
+            }
+            return false;
+        });
+
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+ }
+

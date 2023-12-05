@@ -1,0 +1,274 @@
+@model FinanceCore.DBModels.tblCL_ClientsQuotationsMaster
+@*@using  FinanceCore.Globalization;*@
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Services;
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "CL_ClientsQuotationsMaster ..Details";
+}
+
+<div class="box shadow mb-4">
+    <div class="form box-body px-3 py-3">
+        <div class="row justify-content-between d-flex">
+            <div ID="dvBranchCode" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="BranchCode" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="BranchCode" value="@(await new GE_BranchsVM().GetNameByID(Model.BranchCode))" type="text" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvClientQuotationNo" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="ClientQuotationNo" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="ClientQuotationNo" asp-format="{0:N0}" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvRefQuotationNo" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="RefQuotationNo" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="RefQuotationNo" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvSalesRepName" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="SalesRepName" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="SalesRepName" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvOrderDate" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="OrderDate" class="control-label "></label>
+                    <div class=" ">
+                        <div class="input-group ">
+                            <input asp-for="OrderDate" type="text" class="form-control   inputDistance  date-picker  " disabled="disabled" />
+                            <span class="input-group-addon"> <i class="far fa-calendar-alt fa-lg"></i> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ID="dvJobName" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="JobName" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="JobName" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvCityCountry" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="CityCountry" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="CityCountry" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvClientCode" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="ClientCode" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="ClientCode" value="@(await new CL_ClientsDefinitionVM().GetNameByID(Model.ClientCode))" type="text" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvNewClientName" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="NewClientName" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="NewClientName" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvResponsMan" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="ResponsMan" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="ResponsMan" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvPaymentCode" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="PaymentCode" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="PaymentCode" value="@(await new CL_PaymentConditionVM().GetNameByID(Model.PaymentCode))" type="text" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvTransportCode" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="TransportCode" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="TransportCode" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvCurrencyCode" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="CurrencyCode" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="CurrencyCode" value="@(await new GE_CurrenciesVM().GetNameByID(Model.CurrencyCode))" type="text" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvMemo" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="Memo" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="Memo" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvValidityNo1" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="ValidityNo1" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="ValidityNo1" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvValidityNo2" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="ValidityNo2" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="ValidityNo2" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvPaymentNo1" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="PaymentNo1" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="PaymentNo1" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvPaymentNo2" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="PaymentNo2" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="PaymentNo2" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvStarageArea" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="StarageArea" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="StarageArea" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvDelivery" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="Delivery" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="Delivery" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvPrices" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="Prices" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="Prices" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvQuotationStatus" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="QuotationStatus" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="QuotationStatus" asp-format="{0:N0}" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvTotalQuotation" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="TotalQuotation" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="TotalQuotation" asp-format="{0:N2}" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+            <div ID="dvStatus" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="Status" class="control-label "></label>
+                    <div class=" ">
+                        <input asp-for="Status" asp-format="{0:N0}" class="form-control " disabled="disabled" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between d-flex">
+            <div ID="dvTimeStamp" class="col-sm-6">
+                <div class="form-group has-feedback ">
+                    <label asp-for="TimeStamp" class="control-label "></label>
+                    <div class=" ">
+                        <div class="input-group ">
+                            <input asp-for="TimeStamp" type="text" class="form-control   inputDistance  date-picker  " disabled="disabled" />
+                            <span class="input-group-addon"> <i class="far fa-calendar-alt fa-lg"></i> </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 btns my-3">
+            <a asp-controller="CL_ClientsQuotationsMaster"
+               class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.ClientQuotationNo" style=@(await new syPageRolesVM().pageCanEdit(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["UpdateBtn"]<i class="far fa-save mx-1"></i></a>
+            <a asp-controller="CL_ClientsQuotationsMaster" class="btn btn-primary" asp-action="Index">@Localizer["BackBtn"] <i class="fas fa-angle-double-left mx-1"></i></a>
+            <a asp-controller="CL_ClientsQuotationsMaster" class="btn btn-primary" asp-action="PrintFormReport"
+               asp-route-id="@Model.ClientQuotationNo" asp-route-formAction="Details" data-modal='' id="btnPrintForm" style=@(await new syPageRolesVM().pageCanPrint(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["PrintBtn"]<i class="fas fa-print mx-1"></i></a>
+        </div>
+    </div>
+</div>
+    <!-- modal placeholder-->
+    <div id='myModal' class='modal fade in'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id='myModalContent'></div>
+            </div>
+        </div>
+    </div>
+    @section scripts{
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }

@@ -1,0 +1,44 @@
+ 
+@using Global.Models
+@using  Global.DBModels
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+
+@inject IViewLocalizer Localizer
+
+@{  
+  Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<form asp-action="PrintFormReportConfirmed" role="form">
+     <partial name="Modal/_ModalHeader" model=' new ModalHeader { Heading = @Localizer["PrintFormReport"].Value }' />
+
+    <div class="modal-body form-horizontal ">
+        <h3>
+            <span class="label ">
+                @Localizer["PrintFormReportConfirm"] @Model.ReportIDName?
+            </span>
+        </h3>
+
+    </div>
+    @if (@Model.CallingURL.Contains("ParameterName") )
+    {
+    <a href="@Model.CallingURL" target="_blank">@Localizer["ShowReport"]</a>
+    }
+
+
+
+    <partial name="Modal/_ModalFooter" model='new ModalFooter { OnlyCancelButton = true }' />
+</form>
+
+@section scripts
+    {
+
+    <script>
+        $('#myModal').on('hidden.bs.modal', function () {
+            location.reload();
+
+        })
+    </script>
+}

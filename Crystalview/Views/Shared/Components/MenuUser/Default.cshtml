@@ -1,0 +1,77 @@
+﻿@using System.IO
+@using Global.Common.Extensions;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using NonFactors.Mvc.Grid;
+
+@inject IViewLocalizer Localizer
+<style>
+    .cut-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 117px;
+        height: 1.2em;
+        white-space: nowrap;
+        padding-left: 19px;
+        padding-top: 10px;
+    }
+
+    .buu {
+        white-space: nowrap;
+        width: 75px;
+        font-size: 12px !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+</style>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+    <li class="nav-item dropdown d-inline-flex align-items-center mx-4">
+        <!-- Menu Toggle Button -->
+        <a href="#"  data-toggle="dropdown" style="color:white">
+            <!-- The user image in the navbar-->
+            @if (File.Exists(@Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.AvatarURL)))
+            {
+                <img src="@Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.AvatarURL)" class="user-image" alt="ui">
+            }
+            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+            @if (@Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.GivenName) != null)
+            {
+                <span class="hidden-xs">@Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.GivenName) @Global.Common.Extensions.IdentityExtension.GetUserProperty(User,CustomClaimTypes.Surname)</span>
+            }
+            else
+            {
+
+                <span class="hidden-xs">@User.Identity.Name </span>
+            }
+            <i class="fa-solid fa-angle-up"></i>
+        </a>
+        <ul class="dropdown-menu" style="right: 0 !important;left: auto; width: 200px;padding: 10px; background-color: #f9f9f9; border-radius:0.25rem">
+            <li class="user-footer align-items-right" style=" display: flex; flex-direction: column;">
+                <div class="float-end col-sm-6" style="font-size: 12px !important; min-width: 100%;">
+                    <a asp-area="Accounts" asp-controller="Manage" asp-action="Index" class="custBut" style="width: 100%;">
+                        @* <img src="~/images/Iconfeather-user.svg" style=" padding-right: 5px;" /> *@
+                        @Localizer["Profile"]
+                        </a>
+                </div>
+
+                <div class="float-start col-sm-6 mt-3" style="font-size: 12px !important ;  min-width: 100%;">
+                    <form asp-area="Accounts" asp-controller="Account" asp-action="SignOff" method="post">
+                        <button type="submit" class="custBut" style="width: 100%;">
+                             @* <img src="~/images/Iconfeather-log-out.svg" style=" padding-right: 5px;" /> *@
+                            @Localizer["SignOut"]</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </li>
+    }
+    else
+    {
+       <li class="nav-item d-inline-flex align-items-center mx-4"><a asp-area="Accounts" asp-controller="Account" asp-action="Login">@Localizer["LogIn"]</a></li>
+    }

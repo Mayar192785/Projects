@@ -1,0 +1,62 @@
+@model FinanceCore.DBModels.tblCL_ClientsQuotationsMaster 
+@using NonFactors.Mvc.Lookup
+@using  Global.Globalization;
+@using  Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Helpers
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "CL_ClientsQuotationsMaster ..Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn {
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem
+    }
+
+    #nav-tab .nav-link {
+        border-color: #094766;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+</style>
+@*<YYYYYYYYYYYYYYYY Details go here>*@
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link shadow shadow-bottom-0 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#CL_ClientsQuotationsMasterBasichome" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["CL_ClientsQuotationsMasterBasichomeTabTitle"]</button>
+        <button class="nav-link shadow shadow-bottom-0" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#CL_ClientsQuotationsDetailhome" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["CL_ClientsQuotationsDetailTabTitle"]</button>
+    </div>
+</nav>
+<div class="tab-content mx-auto my-auto py-auto">
+    <div id="CL_ClientsQuotationsMasterBasichome" class=" tab-pane fade  in show active ">
+        <partial name="_EditPartial" for="@Model"  />
+    </div>
+    <div id="CL_ClientsQuotationsDetailhome" class=" tab-pane fade in  ">
+        <partial name="_CL_ClientsQuotationsDetailPartial" for="CL_ClientsQuotationsDetailDetails"  />
+    </div>
+</div>
+<span id="progress" class="text-center" style="display: none;">
+    <img src="~/images/ajax-loader.gif" alt="wiat" />
+    Wait..
+</span>
+
+
+@section Scripts {
+    <script>
+
+    </script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+
+

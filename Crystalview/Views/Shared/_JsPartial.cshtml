@@ -1,0 +1,162 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization;
+@using System.Threading;
+@using WTEG.Core.Tools;
+
+@inject IViewLocalizer Localizer
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    //var cultureItems = LocOptions.Value.SupportedUICultures
+    //    .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+    //    .ToList();
+}
+
+<script>
+    //get current culture format for date
+    //  var DateFormat = 'MM/DD/YYYY';//'@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern';
+    var CurrentDateFormat = '@(System.Globalization.CultureInfo.CurrentCulture.EnglishName.Contains("Arabic") ? "yy-mm-dd" : "mm/dd/yy")';
+    @*if (@System.Globalization.CultureInfo.CurrentCulture.EnglishName.Contains("Arabic"))
+        CurrentDateFormat = 'YYYY/MM/DD';
+        else
+        CurrentDateFormat = 'MM/DD/YYYY';*@
+
+        // alert(CurrentDateFormat);
+</script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript bootstrap v 3-->
+@*<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>*@
+
+<script src="~/lib/tether/js/tether.js"></script>
+<script src="~/lib/bootstrap/js//bootstrap.js"></script>
+
+<script src="~/lib/luxon/luxon.js"></script>
+<script src="~/lib/moment/moment.js"></script>
+<script src="~/lib/eonasdan-bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/lib/jt.timepicker/jquery.timepicker.js"></script>
+
+@*<script src="~/lib/font-awesome/js/all.js"></script>*@
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/jqueryui/jquery-ui.js"></script>
+<script src="~/lib/jstree/dist/jstree.min.js"></script>
+
+
+
+<!--//select control   -->
+
+
+<script src="~/lib/jquery-cascading-dropdown/jquery.cascadingdropdown.min.js"></script>
+<script src="~/lib/select2/js/select2.js"></script>
+
+<script src="~/lib/multiselect/js/jquery.multi-select.js"></script>
+<script src="~/js/listbox.js"></script>
+<script src="~/CustomScripts/CheckboxList.js"></script>
+<link href="~/css/listbox.css" rel="stylesheet" />
+@*//#region slick grid scripts*@
+<!--//slick grid    -->
+@*<script src="~/lib/print-js/dist/print.js"></script>*@
+
+
+<!-- calendar -->
+<script src="~/lib/fullcalendar-5.10.2/lib/main.min.js"></script>
+@*<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+*@<!-- Include either the minifed or production version, NOT both!! -->
+<script type="text/javascript" src="~/lib/qtip2/dist/jquery.qtip.js"></script>
+
+
+<!--//tabulator   -->
+<script type="text/javascript" src="~/lib/tabulator/js/tabulator.js"></script>
+
+@*//AdminLTE*@
+<!--//admin lte  -->
+<script src="~/lib/admin-lte/js/adminlte.js"></script>
+@*<script src="~/lib/PACE/pace.min.js" asp-append-version="true"></script>*@
+
+<script src="~/js/cookie.js" asp-append-version="true"></script>
+<script src="~/js/KeepMenu.js" asp-append-version="true"></script>
+
+
+<!-- Include jTable script file. -->
+<script src="~/lib/jTable/jquery.jtable.js" type="text/javascript"></script>
+
+<!-- Import Javascript files for validation engine (in Head section of HTML) -->
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+<script src="~/lib/jQuery-Validation-Engine/languages/jquery.validationEngine-en.js"></script>
+<script src="~/lib/jQuery-Validation-Engine/jquery.validationEngine.js"></script>
+
+<!-- select flage options-->
+<script src="~/lib/msdropdown/js/jquery.dd.min.js" type="text/javascript"></script>
+
+
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+@*//#endregion*@
+
+<!--//MCV grid and lookup   -->
+<script src="~/lib/MvcLookup/mvc-lookup.js" asp-append-version="true"></script>
+<script src="~/lib/Mvc-Grid/mvc-grid.js" asp-append-version="true"></script>
+
+
+<!--summernote -->
+<script src="~/lib/summernote/summernote.js"></script>
+
+<!-- my customized scripts-->
+<script src="~/CustomScripts/CommonFunction.js" asp-append-version="true"></script>
+<script src="~/CustomScripts/PrintFunctions.js" asp-append-version="true"></script>
+<script src="~/CustomScripts/MVCGridCustom.js" asp-append-version="true"></script>
+<script src="~/CustomScripts/TabulatorCustom.js" asp-append-version="true"></script>
+<script src="~/CustomScripts/SlickGridCustom.js" asp-append-version="true"></script>
+<script src="~/CustomScripts/OldScriptst.js"></script>
+<script src="~/js/site.js"></script>
+
+
+@if (CultureHelper.IsRighToLeft())
+{
+
+
+                //jtable rtl settings ,
+                // $.hik.jtable.prototype.options.rtl = true;
+    <script src="~/lib/jQuery-Validation-Engine/languages/jquery.validationEngine-ar.js"></script>
+
+    <script src="~/lib/Mvc-Grid/cultures/mvc-grid.culture.ar.js"></script>
+
+    <script src="~/lib/jtable/lib/localization/jquery.jtable.ar.js"></script>
+
+    <script src="~/lib/moment/locale/ar.js"></script>
+
+    <script src="~/lib/select2/js/i18n/ar.js"></script>
+
+    <script src="~/lib/summernote/lang/summernote-ar-AR.js"></script>
+
+    <script src="~/lib/jqueryui/datepicker-ar.js"></script>
+
+    <script src="~/lib/~/lib/jquery-validation/dist/localization/messages_ar.js"></script>
+
+    <script src="~/lib/fullcalendar-5.10.2/lib/locals/ar.js"></script>
+}
+
+
+<script>
+        //jtable rtl settings ,
+        $.hik.jtable.prototype.options.rtl = (document.dir == "rtl" ? true : false);
+    //alert($.hik.jtable.prototype.options.rtl);
+
+    //luxon part for all pages
+    var DateTime = luxon.DateTime;
+
+
+
+</script>
+
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}

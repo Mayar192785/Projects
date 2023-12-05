@@ -1,0 +1,401 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CrystalERP
+build_property.RootNamespace = CrystalERP
+build_property.ProjectDir = C:\Users\LENOVO\Documents\GitHub\CrystalViewERPWeb\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\LENOVO\Documents\GitHub\CrystalViewERPWeb
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Area/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXJlYVxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Area/Views/Home/UserPreferences.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXJlYVxWaWV3c1xIb21lXFVzZXJQcmVmZXJlbmNlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Area/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXJlYVxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/IndexNumber.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxJbmRleE51bWJlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/_CL_ClientsQuotationsDetailPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxfQ0xfQ2xpZW50c1F1b3RhdGlvbnNEZXRhaWxQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/_DetailsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxfRGV0YWlsc1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_ClientsQuotationsMaster/_EditPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9DbGllbnRzUXVvdGF0aW9uc01hc3RlclxfRWRpdFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_PaymentCondition/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9QYXltZW50Q29uZGl0aW9uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_PaymentCondition/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9QYXltZW50Q29uZGl0aW9uXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_PaymentCondition/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9QYXltZW50Q29uZGl0aW9uXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_PaymentCondition/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9QYXltZW50Q29uZGl0aW9uXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_PaymentCondition/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9QYXltZW50Q29uZGl0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/CL_PaymentCondition/IndexNumber.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xDTF9QYXltZW50Q29uZGl0aW9uXEluZGV4TnVtYmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/Clients/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2xpZW50c1xWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Branchs/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9CcmFuY2hzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Branchs/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9CcmFuY2hzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Branchs/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9CcmFuY2hzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Branchs/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9CcmFuY2hzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Branchs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9CcmFuY2hzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Branchs/IndexNumber.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9CcmFuY2hzXEluZGV4TnVtYmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/IndexNumber.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcSW5kZXhOdW1iZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/_DetailsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcX0RldGFpbHNQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/_EditPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcX0VkaXRQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Countries/_GE_CitiesPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9Db3VudHJpZXNcX0dFX0NpdGllc1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Currencies/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9DdXJyZW5jaWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Currencies/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9DdXJyZW5jaWVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Currencies/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9DdXJyZW5jaWVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Currencies/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9DdXJyZW5jaWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Currencies/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9DdXJyZW5jaWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_Currencies/IndexNumber.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9DdXJyZW5jaWVzXEluZGV4TnVtYmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_SubSystems/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9TdWJTeXN0ZW1zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_SubSystems/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9TdWJTeXN0ZW1zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_SubSystems/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9TdWJTeXN0ZW1zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_SubSystems/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9TdWJTeXN0ZW1zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_SubSystems/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9TdWJTeXN0ZW1zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/GE_SubSystems/IndexNumber.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xHRV9TdWJTeXN0ZW1zXEluZGV4TnVtYmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Areas/General/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcR2VuZXJhbFxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/ChangeLanguage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGFuZ2VMYW5ndWFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/MainPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNYWluUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/Breadcrumb/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQnJlYWRjcnVtYlxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/ControlSidebar/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ29udHJvbFNpZGViYXJcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/Footer/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcRm9vdGVyXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/Header/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcSGVhZGVyXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/Menubar/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWVudWJhclxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/MenuMessage/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWVudU1lc3NhZ2VcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/MenuNotification/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWVudU5vdGlmaWNhdGlvblxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/MenuTask/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWVudVRhc2tcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/MenuTask/PartialOne.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWVudVRhc2tcUGFydGlhbE9uZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/MenuUser/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTWVudVVzZXJcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/PageAlert/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcUGFnZUFsZXJ0XERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Components/PageHeader/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcUGFnZUhlYWRlclxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Modal/_Modal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1vZGFsXF9Nb2RhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Modal/_ModalFooter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1vZGFsXF9Nb2RhbEZvb3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/Modal/_ModalHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE1vZGFsXF9Nb2RhbEhlYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcGrid/_AjaxGrid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0dyaWRcX0FqYXhHcmlkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcGrid/_Grid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0dyaWRcX0dyaWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcGrid/_Grid1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0dyaWRcX0dyaWQxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcGrid/_Pager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0dyaWRcX1BhZ2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcGrid/_Pager1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0dyaWRcX1BhZ2VyMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcGrid/_PagerJt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0dyaWRcX1BhZ2VySnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcGrid/_PagerWithRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0dyaWRcX1BhZ2VyV2l0aFJvd3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/MvcLookup/_Dialog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE12Y0xvb2t1cFxfRGlhbG9nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/PrintFormReport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFByaW50Rm9ybVJlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_ChildLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DaGlsZExheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_CssPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Dc3NQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_CssPartialRTL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Dc3NQYXJ0aWFsUlRMLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_JsPartial-1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Kc1BhcnRpYWwtMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_JsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Kc1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_PartialLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYXJ0aWFsTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_ReportLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SZXBvcnRMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_SelectLanguagePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TZWxlY3RMYW5ndWFnZVBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_ShowPhoto.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaG93UGhvdG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/LENOVO/Documents/GitHub/CrystalViewERPWeb/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-v2ntjdocr3

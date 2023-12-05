@@ -1,0 +1,238 @@
+/* Start Global Rules */
+:root {
+  --main-transition: 0.3s;
+  --second-transition: 0.5s;
+  --main-color: #19c8fa;
+  --transparent-color: rgb(48 121 140 / 70%);
+  --p-color: #777;
+  --main-radius: 5px;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+ul {
+  list-style: none;
+}
+
+body.arabic {
+  direction: rtl;
+}
+body.english {
+  direction: ltr;
+}
+.login-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-page {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+}
+
+.language {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  transition: var(--main-transition);
+  color: white;
+}
+body.arabic .language {
+  right: auto;
+  left: 4px;
+  top: 4px;
+}
+.language .lang-container {
+  background-color: black;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 5;
+}
+.language a {
+  text-decoration: none;
+  color: white;
+  transition: var(--main-transition);
+}
+.lang-container:hover,
+.lang-container:hover a {
+  color: var(--main-color);
+}
+
+/* Start Slide Image */
+.side-image {
+  background-image: url("../img/login.jpg");
+  background-size: cover;
+  position: relative;
+}
+.side-image::before {
+  content: "";
+  background-color: rgb(0 0 0 / 50%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.side-image .shape {
+  background-color: white;
+  width: 200px;
+  border-radius: 0 0 6px 6px;
+  position: absolute;
+  left: 15%;
+  text-align: center;
+  color: var(--main-color);
+  padding: 25px;
+}
+.side-image .shape i {
+  font-size: 24px;
+  display: block;
+}
+.side-image .shape span:last-child {
+  color: black;
+  padding-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.side-image .shape h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.side-image .info {
+  position: absolute;
+  top: 50%;
+  color: white;
+  letter-spacing: 2px;
+  padding: 15px;
+}
+.side-image .info {
+  position: absolute;
+  top: 50%;
+  color: white;
+  padding: 15px;
+}
+.side-image .info h2 {
+  font-size: 38px;
+  letter-spacing: 3px;
+}
+.side-image .info span {
+  color: var(--main-color);
+}
+.side-image .info p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bullets {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.login-page .side-image .bullets {
+  bottom: 50px !important;
+}
+.bullets li {
+  width: 14px;
+  height: 14px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background-color: white;
+}
+.bullets li.active {
+  background-color: var(--main-color);
+}
+/* Start Slide Image */
+
+/* Start Main Login */
+.main-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.main-login .login {
+  width: 60%;
+  padding: 30px;
+}
+
+.main-login .login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-login .login form .mb-3 {
+  width: 100%;
+  padding: 0;
+}
+.main-login .login form label {
+  font-size: 18px;
+}
+.main-login .login form .form-check {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.main-login .login form .form-check .form-check-input {
+  float: unset;
+  margin: 0;
+}
+.login form a#login {
+  width: 85%;
+  color: black;
+  font-weight: 600;
+  background-color: transparent;
+  border: 1.5px solid rgb(94, 146, 248);
+  border-radius: 25px;
+  transition: 0.3s ease-in-out;
+  font-size: 18px;
+  padding: 7px 0;
+}
+.login form a#login:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(11, 94, 215);
+  border-color: rgb(10, 88, 202);
+}
+/* Start Main Login */
+
+/* Start Footer */
+.foot {
+  display: flex;
+  background-color: rgb(17, 32, 49);
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  width: 100%;
+  color: white;
+  padding: 3px;
+  height: 35px;
+}
+
+.foot span {
+  color: rgb(79, 202, 251);
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.foot span:hover {
+  color: rgb(10, 88, 202);
+}
+/* End Footer */

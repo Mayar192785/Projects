@@ -1,0 +1,27 @@
+﻿@using Microsoft.Extensions.Configuration
+@using  Global.Models
+@inject IConfiguration Configuration
+@* <head>
+    <link href="~/css/styles.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/all.minn.css" rel="stylesheet">
+</head> *@
+<footer class="main-footer bg-white px-3 py-2 mt-auto static-bottom">
+    <section class="d-flex justify-content-between p-1">
+        <!-- Left -->
+        <div class="mx-4">
+            <span class="hidden-xs">
+                    @Configuration.GetSection("AppInfo")["Name"]
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Crystal Soft 2023. All Rights Reserved.</p>
+            </span>
+        </div>
+        <!-- Left -->
+        <!-- Right -->
+        <div class="my-2">
+            <a class="mx-4" style="color:#094766;" href="https://www.facebook.com/crystalsoft.com.eg?mibextid=LQQJ4d"><i class="fab fa-facebook fs-3"></i></a>
+            <a class="mx-4" style="color:#094766;" href="https://www.linkedin.com/in/crystal-soft-06b85bb6"><i class="fab fa-linkedin fs-3"></i></a>
+            <a class="mx-4" style="color:#094766;" href="https://crystalsoft.com.eg/"><i class="fab fa-google fs-3"></i></a>
+        </div>
+        <!-- Right -->
+    </section>
+    @*-- @SiteUtils.GetLinkerTime();*@
+</footer>

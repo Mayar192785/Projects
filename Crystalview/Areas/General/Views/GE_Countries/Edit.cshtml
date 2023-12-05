@@ -1,0 +1,90 @@
+@model FinanceCore.DBModels.tblGE_Countries
+@using NonFactors.Mvc.Lookup
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Helpers
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "GE_Countries ..Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btns .btn:not(.btn.btn-danger) {
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+
+    }
+    #nav-tab .nav-link{
+        border-color: gray;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+
+    #nav-tab .nav-link.active {
+        border-bottom: 3.5px solid #094766;
+    }
+</style>
+@*<YYYYYYYYYYYYYYYY Details go here>*@
+<div class="container bg-white mx-auto my-auto">
+    <div class="row mx-5 my-auto">
+        <!-- /Start Tabs -->
+        <div class="col-md-12">
+    @*         <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link shadow shadow-bottom-0 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#GE_CountriesBasichome" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["GE_CountriesBasichomeTabTitle"]</button>
+                    <button class="nav-link shadow shadow-bottom-0" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#GE_Citieshome" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["GE_CitiesTabTitle"]</button>
+                </div>
+            </nav> *@
+            <div class="tab-content mx-auto my-auto py-auto">
+                <div id="GE_CountriesBasichome" class=" tab-pane fade-in show active ">
+                    <partial name="_EditPartial" for="@Model" />
+                </div>
+            </div>
+
+            <span id="progress" class="text-center" style="display: none;">
+                <img src="~/images/ajax-loader.gif" alt="wiat" />
+                Wait..
+            </span>
+        </div>
+    </div>
+    <div class="row mx-5 my-auto">
+        <!-- /Start Tabs -->
+        <div class="col-md-12">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#GE_Citieshome" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["GE_CitiesTabTitle"]</button>
+                </div>
+            </nav>
+            <div id="GE_Citieshome" class=" tab-pane fade-in">
+                <partial name="_GE_CitiesPartial" for="GE_CitiesDetails" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-sm-12 btns pt-2 py-3 my-auto">
+        <button class="btn" type="submit"> @Localizer["Save"] <i class="far fa-save mx-1"></i>  </button>
+        <a asp-controller="GE_Countries" class="btn" asp-action="Index" data-toggle='modal' data-target='#myModal' class='ModalClick'>@Localizer["Back"] <i class="fas fa-angle-double-left mx-1"></i></a>
+        <a asp-controller="GE_Countries" class="btn" asp-action="PrintFormReport"
+           asp-route-id="@Model.CountryCode" asp-route-formAction="Details" data-modal='' id="btnPrintForm" style=@(await new syPageRolesVM().pageCanPrint(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["Print"]<i class="fas fa-print mx-1"></i></a>
+    </div>
+</div>
+@section Scripts {
+    <script>
+
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

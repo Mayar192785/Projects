@@ -1,0 +1,134 @@
+@model IEnumerable<FinanceCore.DBModels.tblCL_ClientsQuotationsMaster>
+@*@using  FinanceCore.Globalization;*@
+@using FinanceCore.DBModels;
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@*@model IEnumerable<FinanceCore.DBModels.CL_ClientsQuotationsMaster>*@
+@using NonFactors.Mvc.Grid;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@using Microsoft.Extensions.Localization;
+@using Newtonsoft.Json;
+
+
+
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = "CL_ClientsQuotationsMaster ..Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="card-body">
+    <form asp-controller="CL_ClientsQuotationsMaster"
+          asp-action="IndexNumber"
+          asp-route-returnurl="@ViewBag.ReturnUrl"
+          asp-anti-forgery="false"
+          id="FullForm"
+          method="post">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="@Localizer["SearchByNumber"]" name="txtSearch" value="@ViewBag.filter">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                @if (await new syPageRolesVM().pageCanCreate(Context.Request.Path, Context.User.Identity.Name))
+                {
+                    <a class="btn btn-primary pull-right" id="btnCreate" asp-action="Create">
+                        @Localizer["CreateBtn"]
+                        <span class="fas fa-plus"></span>
+
+                    </a>
+
+                }
+                <div class="widget-buttons pull-left">
+                    <span id="GridConfigure" class="fa fa-cog"></span>
+                </div>
+            </div>
+        </div>
+
+        @if (Model != null)
+        {
+            <div class="widget-content">
+
+                @(Html
+                    .Grid(Model)
+                    .Build(columns =>
+                    {
+
+                        //columns.Add(model => Html.CheckBox("Check_" + model.ClientQuotationNo)).Titled(Html.CheckBox("CheckAll"));
+                        columns.Add(model => model.BranchCodeName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["BranchCode"]);
+                        columns.Add(model => model.ClientQuotationNo).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["ClientQuotationNo"]).Formatted("{0:N0}");
+                        columns.Add(model => model.RefQuotationNo).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["RefQuotationNo"]);
+                        columns.Add(model => model.SalesRepName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["SalesRepName"]);
+                        columns.Add(model => model.OrderDate).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["OrderDate"]).Formatted("{0:dd/MM/yyyy}");
+                        columns.Add(model => model.JobName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["JobName"]);
+                        columns.Add(model => model.CityCountry).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["CityCountry"]);
+                        columns.Add(model => model.ClientCodeName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["ClientCode"]);
+                        columns.Add(model => model.NewClientName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["NewClientName"]);
+                        columns.Add(model => model.ResponsMan).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["ResponsMan"]);
+                        columns.Add(model => model.PaymentCodeName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["PaymentCode"]);
+                        columns.Add(model => model.TransportCode).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["TransportCode"]);
+                        columns.Add(model => model.CurrencyCodeName).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["CurrencyCode"]);
+                        columns.Add(model => model.Memo).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["Memo"]);
+                        columns.Add(model => model.ValidityNo1).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["ValidityNo1"]);
+                        columns.Add(model => model.ValidityNo2).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["ValidityNo2"]);
+                        columns.Add(model => model.PaymentNo1).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["PaymentNo1"]);
+                        columns.Add(model => model.PaymentNo2).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["PaymentNo2"]);
+                        columns.Add(model => model.StarageArea).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["StarageArea"]);
+                        columns.Add(model => model.Delivery).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["Delivery"]);
+                        columns.Add(model => model.Prices).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["Prices"]);
+                        columns.Add(model => model.QuotationStatus).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["QuotationStatus"]).Formatted("{0:N0}");
+                        columns.Add(model => model.TotalQuotation).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["TotalQuotation"]).Formatted("{0:N2}");
+                        columns.Add(model => model.Status).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["Status"]).Formatted("{0:N0}");
+                        columns.Add(model => model.TimeStamp).Filterable(GridFilterType.Multi).Sortable(GridSortOrder.Asc).Titled(@Localizer["TimeStamp"]).Formatted("{0:dd/MM/yyyy}");
+
+                        columns.Add(model => $"<a data-id='{model.ClientQuotationNo}' href='/Clients/CL_ClientsQuotationsMaster/details/{model.ClientQuotationNo}' id='{model.ClientQuotationNo}' title='{@Localizer["DetailsButton"].Value}'> <span class='fa fa-list-alt fa-lg'> </span> </a>").Encoded(false).Css("action");
+                        if (new syPageRolesVM().pageCanEdit(Context.Request.Path, Context.User.Identity.Name).Result)
+                            columns.Add(model => $"<a data-id='{model.ClientQuotationNo}' href='/Clients/CL_ClientsQuotationsMaster/edit/{model.ClientQuotationNo}' id='{model.ClientQuotationNo}' title='{@Localizer["EditButton"].Value}'> <span class='fas fa-edit fa-lg'> </span> </a>").Encoded(false).Css("action");
+                        if (new syPageRolesVM().pageCanDelete(Context.Request.Path, Context.User.Identity.Name).Result)
+                            columns.Add(model => $"<a data-id='{model.ClientQuotationNo}' data-modal='' href='/Clients/CL_ClientsQuotationsMaster/delete/{model.ClientQuotationNo}' id='{model.ClientQuotationNo}' title='{@Localizer["DeleteButton"].Value}'> <span class='fa fa-trash  fa-lg'> </span> </a>").Encoded(false).Css("action");
+                    })
+                    .Empty(@Localizer["GridEmptyData"].Value)
+                    //.Configure (CL_ClientsQuotationsMastergridConfig)
+                    .Filterable()
+                    .Sortable()
+                    .Named("CL_ClientsQuotationsMastergrid")
+                    .Id("CL_ClientsQuotationsMastergrid")
+                    //.Using(GridProcessingMode.Manual)
+                    .Pageable(pager =>
+                    {
+                        // pager.TotalRows = ViewBag.TotalRows;
+                        pager.PageSizes = new Dictionary<Int32, String> { { 0, "All" }, { 25, "25" }, { 40, "40" } };
+                        pager.ShowPageSizes = true;
+                        pager.PagesToDisplay = 5;
+                        pager.CurrentPage = 1;
+                        pager.RowsPerPage = 25;
+                    })
+                    )
+            </div>
+        }
+    </form>
+
+</div>
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+    </script>
+}

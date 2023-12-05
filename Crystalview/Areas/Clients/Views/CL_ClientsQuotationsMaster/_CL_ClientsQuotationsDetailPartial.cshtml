@@ -1,0 +1,239 @@
+@model IEnumerable<FinanceCore.DBModels.tblCL_ClientsQuotationsDetail>
+
+@using FinanceCore.DBModels;
+@using  Global.Globalization;
+@using Global.Models;
+@using  Global.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Services;
+
+@inject IViewLocalizer Localizer
+<style>
+    .btns .btn:not(.btn.btn-danger) {
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+
+    .btn.btn-danger {
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+
+        .btn.btn-danger:hover {
+            color: #fff;
+        }
+</style>
+<div class="row mx-5 my-auto">
+    <div class="col-lg-6 btns">
+        <div class="widget-buttons popup">
+            <span id="GridConfigCL_ClientsQuotationsDetail" class="fa fa-cog" onclick="$('.target').toggle()"></span>
+            <div class="mvc-grid-popup mvc-grid-configuration target" id="columnsconfigCL_ClientsQuotationsDetail" style="display: none;" tabindex="-2000">
+                <div class="popup-arrow" style="left: 9px;"></div>
+                <div class="popup-content" id="checkBundleCL_ClientsQuotationsDetail">
+
+                </div>
+            </div>
+        </div>
+        <a class="btn mb-3" id="btnSaveCL_ClientsQuotationsDetail" data-toggle="tooltip" data-placement="top" title="@Localizer["tipchangedData"]">
+            @Localizer["btnSave"]
+            <span class="far fa-save mx-1"></span>
+
+        </a>
+        <a class="btn mb-3 Alt-A " id="btnAddCL_ClientsQuotationsDetail"  data-toggle="tooltip" data-placement="top" title="@Localizer["tipAddNewRowDefaultValues"]">
+            @Localizer["btnAdd"]
+            <span class="fas fa-plus mx-1"></span>
+
+        </a>
+        <a class="btn btn-danger mb-3" id="btnDeleteSelectedCL_ClientsQuotationsDetail" data-toggle="tooltip" data-placement="top" title="@Localizer["tipDeleteAllSelected"]">
+            @Localizer["btnDelete"]
+            <span class="fa fa-trash fa-lg mx-1"></span>
+
+        </a>
+    </div>
+    <br>
+    <br>
+</div>
+<div id="CL_ClientsQuotationsDetailGrid" class="col-lg-12"></div>
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in' role='dialog'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    
+    <script>
+        //#region standard set of options and vars always there
+        //alert('no where yet');
+        var CL_ClientsQuotationsDetaileditedRows = [];
+        // grid fuil loptions , editable in edit only
+       var Editable = window.location.pathname.toLowerCase().indexOf("/edit", 1) !== -1;
+ // diaable buttons also as they are not needed 
+        if (!Editable)
+        {
+         $('#btnSaveCL_ClientsQuotationsDetail').hide();
+         $('#btnAddCL_ClientsQuotationsDetail').hide();
+         $('#btnDeleteSelectedCL_ClientsQuotationsDetail').hide();
+        }
+        //#endregion
+ //#region foriegn key stuff
+//#region preparing select for BranchCode
+        var BranchCodeSelect = {};
+		        fillArraryfromAjax(  BranchCodeSelect ,"/General/CL_ClientsQuotationsMaster/getCL_ClientsQuotationsMasterSelect", "application/json;charset=utf-8"
+            , null, false, "json", "error BranchCode"); //, { tableID: 98 } send data back
+        //#endregion
+//#region preparing select for ClientQuotationNo
+        var ClientQuotationNoSelect = {};
+		        fillArraryfromAjax(  ClientQuotationNoSelect ,"/General/CL_ClientsQuotationsMaster/getCL_ClientsQuotationsMasterSelect", "application/json;charset=utf-8"
+            , null, false, "json", "error ClientQuotationNo"); //, { tableID: 98 } send data back
+        //#endregion
+
+ //#endregion 
+
+        //#region preapre table part with columns
+
+        //Build Tabulator
+        var CL_ClientsQuotationsDetailGrid = new Tabulator("#CL_ClientsQuotationsDetailGrid", {
+            ajaxURL: "/General/CL_ClientsQuotationsDetail/getCL_ClientsQuotationsDetailFilteredList",
+            ajaxParams: { filterColumn: "value1", filterValue: getCoreid() }, //ajax parameters
+            height: "311px",
+            layout: "fitColumns",
+            placeholder: "No Data Set",
+            headerHozAlign: "center",
+            tooltipsHeader: function (column) { return GetToolTip(column); },
+             //    responsiveLayout: true,
+            persistenceMode: "cookie",
+            persistence: {
+                sort: true,
+                filter: true,
+                columns: ["width", "visible", "frozen"],
+            },
+            persistenceID: "CL_ClientsQuotationsDetailGrid",
+        //    responsiveLayout: true,
+            index: "id",
+            columns: [
+                { title : "Row Selection", 
+                    formatter: "rowSelection", titleFormatter: "rowSelection", hozAlign: "center", width: 40, headerSort: false, cellClick: function (e, cell) {
+                        cell.getRow().toggleSelect();
+                    }, visible: Editable
+                },
+ { title: "@Localizer["DeleteRow"]" ,formatter: DeleteIcon, width: 40, hozAlign: "center", cellClick: function (e, cell) { CL_ClientsQuotationsDetailDelete(cell.getRow().getData().id); } , headerSort:false , tooltip : "@Localizer["DeleteSingleRow"]" , visible: Editable },
+{ title: "@Localizer["CancelAllEdits"]", formatter: CancelIcon, width: 40, hozAlign: "center", cellClick: function(e, cell) { CancelEdit(cell, "@Localizer["ConfirmUndo"]"); }, headerSort: false, tooltip : "@Localizer["CancelRowEdits"]", visible: Editable },
+// ,editor: "select", editorParams: { values: BranchCodeSelect }
+{ title: "@Localizer["BranchCode"]", field: "branchCode" , headerToolTip: "@Localizer["BranchCodetip"]" , validator: "required" , editor: "autocomplete", editorParams:{ showListOnEmpty: true, freetext: false, allowEmpty: true, searchingPlaceholder: "Filtering ...", emptyPlaceholder: "(no matching results found)", verticalNavigation: "hybrid",values: BranchCodeSelect, sortValuesList: "asc"},  formatter: "lookup", formatterParams: BranchCodeSelect, minWidth: 120, editable: Editable                },
+// ,editor: "select", editorParams: { values: ClientQuotationNoSelect }
+{ title: "@Localizer["ClientQuotationNo"]", field: "clientQuotationNo" , headerToolTip: "@Localizer["ClientQuotationNotip"]" , validator: "required" , editor: "autocomplete", editorParams:{ showListOnEmpty: true, freetext: false, allowEmpty: true, searchingPlaceholder: "Filtering ...", emptyPlaceholder: "(no matching results found)", verticalNavigation: "hybrid",values: ClientQuotationNoSelect, sortValuesList: "asc"},  formatter: "lookup", formatterParams: ClientQuotationNoSelect, minWidth: 120, editable: Editable                },
+{ title: "@Localizer["SerialNo"]", field: "serialNo" , headerToolTip: "@Localizer["SerialNotip"]" , validator: "required" ,editor: "number"  , sorter:"number" , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["ClientCode"]", field: "clientCode" , headerToolTip: "@Localizer["ClientCodetip"]"  ,editor: "number"  , sorter:"number" , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["ItemCode"]", field: "itemCode" , headerToolTip: "@Localizer["ItemCodetip"]"  ,editor: "input"   , sorter: "string" , minWidth: 120 ,  editable:  Editable },
+{ title: "@Localizer["AltCode"]", field: "altCode" , headerToolTip: "@Localizer["AltCodetip"]"  ,editor: "input"   , sorter: "string" , minWidth: 120 ,  editable:  Editable },
+{ title: "@Localizer["Quantity"]", field: "quantity" , headerToolTip: "@Localizer["Quantitytip"]"  ,editor: "number"  , sorter:"number"  ,formatter:"money", formatterParams:{    decimal:".",    thousand:",",    symbol:"",    symbolAfter:"",    precision:false,} , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["Price"]", field: "price" , headerToolTip: "@Localizer["Pricetip"]"  ,editor: "number"  , sorter:"number"  ,formatter:"money", formatterParams:{    decimal:".",    thousand:",",    symbol:"",    symbolAfter:"",    precision:false,} , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["Value"]", field: "value" , headerToolTip: "@Localizer["Valuetip"]"  ,editor: "number"  , sorter:"number"  ,formatter:"money", formatterParams:{    decimal:".",    thousand:",",    symbol:"",    symbolAfter:"",    precision:false,} , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["ValueddTaxP"]", field: "valueddTaxP" , headerToolTip: "@Localizer["ValueddTaxPtip"]"  ,editor: "number"  , sorter:"number"  ,formatter:"money", formatterParams:{    decimal:".",    thousand:",",    symbol:"",    symbolAfter:"",    precision:false,} , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["ValueaddTaxV"]", field: "valueaddTaxV" , headerToolTip: "@Localizer["ValueaddTaxVtip"]"  ,editor: "number"  , sorter:"number"  ,formatter:"money", formatterParams:{    decimal:".",    thousand:",",    symbol:"",    symbolAfter:"",    precision:false,} , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["Dedaction"]", field: "dedaction" , headerToolTip: "@Localizer["Dedactiontip"]"  ,editor: "number"  , sorter:"number"  ,formatter:"money", formatterParams:{    decimal:".",    thousand:",",    symbol:"",    symbolAfter:"",    precision:false,} , minWidth: 50 ,  editable:  Editable },
+{ title: "@Localizer["TimeStamp"]", field: "timeStamp" , headerToolTip: "@Localizer["TimeStamptip"]"  ,editor:dateEditor , formatter:"datetime", formatterParams:{    inputFormat:"YYYY-MM-DD",    outputFormat:"DD/MM/YYYY",    invalidPlaceholder:"(invalid date)",} , sorter:"date", sorterParams:{  format: "YYYY-MM-DD", alignEmptyValues: "top",}  , minWidth: 120 ,  editable:  Editable },
+],
+     dataChanged : function (data) {
+                //data - the updated table data
+                CL_ClientsQuotationsDetaileditedRows  = data;//.push(data);
+               // console.log(CL_ClientsQuotationsDetaileditedRows);
+            },
+        });
+        //#region save table config part
+        //fill in li for the config
+        fillInColumns(CL_ClientsQuotationsDetailGrid, "CL_ClientsQuotationsDetailGrid");
+
+        //#endregion
+       //#endregion
+
+       //#endregion
+        //#region add new row to array on add row
+        //Add row on "Add Row" button click
+        $("#btnAddCL_ClientsQuotationsDetail").click(function () {
+            //fill in basic data
+            var id = Math.floor((Math.random() * 10000) + 1) * -1;
+            var parentId = getLastPartofURL();
+            CL_ClientsQuotationsDetailGrid.addRow({ id: id, clientQuotationNo: parentId branchCode:0,clientQuotationNo:0,serialNo:0,clientCode:0,itemCode:null,altCode:null,quantity:0,price:0,value:0,valueddTaxP:0,valueaddTaxV:0,dedaction:0,timeStamp:null,}); 
+          $('.mvc-lookup-input').val('');
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.altKey && event.key === 'a') {
+                document.getElementById("btnAddCL_ClientsQuotationsDetail").click();
+            }
+        })
+        //#endregion
+            //#region send data back t oserver
+            $('#btnSaveCL_ClientsQuotationsDetail').click(function () {
+
+                var UpdatedRows = JSON.stringify(CL_ClientsQuotationsDetailGrid.getData());
+                //  var UpdatedRows = JSON.stringify(CL_ClientsQuotationsDetaileditedRows);
+                //console.log(UpdatedRows);
+                // UpdatedRows = UpdatedRows.replace(/null/g, "0");
+                
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "/General/CL_ClientsQuotationsDetail/Update",
+                    //traditional: true,   //must be tru for arrray to be send 
+                    data:  UpdatedRows ,
+                    dataType: "json",
+                    success: function (data) {
+                         if (data.success) {
+                            // here comes your response after calling the server
+                            alert('@Localizer["SaveSuccess"]');
+                            //window.location.reload();
+                            CL_ClientsQuotationsDetailGrid.setData();
+                        }
+                        else { 
+                            alert(data.responseText);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("error : " + jqXHR.responseText);
+                    }
+                });
+            });
+            //#endregion
+
+        //#region delete row
+        function CL_ClientsQuotationsDetailDelete(rowID) {
+            if ( rowID <=0 )
+            {
+                CL_ClientsQuotationsDetailGrid.deleteRow(rowID);
+            }
+            else
+            DeleteRow(rowID, "/General/CL_ClientsQuotationsDetail/Delete", "@Localizer["ConfirmDelete"]", "@Localizer["DeleteSuccess"]", "@Localizer["DeleteFail"]", true);
+           
+        };
+
+        //#endregion
+            //#region deleted all selected
+            $('#btnDeleteSelectedCL_ClientsQuotationsDetail').on('click', function () {
+            DeleteSelected(CL_ClientsQuotationsDetailGrid, "/General/CL_ClientsQuotationsDetail/DeleteSelected", "@Localizer["ConfirmDelete"]", '@Localizer["DeleteSuccess"]',  "@Localizer["DeleteFail"]", true)
+
+
+        });
+
+        //#endregion
+
+
+
+       
+
+
+       
+
+    </script>
+
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

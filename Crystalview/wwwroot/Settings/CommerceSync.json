@@ -1,0 +1,99 @@
+[
+  {
+    "ActionName": "ItemSubCategoryIn",
+    "SQL": "SELECT [Id]  as ID ,[Name] ,[ParentCategoryId]  as [ParentSub]     ,[Deleted]  ,Description    FROM  [dbo].[Category] where UpdatedOnUtc>@LastSyncDate",
+    "ReceiveTableName": "ivItemsSubCategory",
+    "InsertCommand": "INSERT INTO [dbo].[ivItemsSubCategory] (ID ,[MainId]  ,[Name]  ,[ParentSub]  ,[Description]) VALUES (ID ,1  ,@Name  ,@ParentSub  ,@Description)",
+    "UpdateCommand": "UPDATE [dbo].[ivItemsSubCategory]  SET [Name] = @Name  ,[ParentSub] = @ParentSub   ,[Description] = @Description WHERE Id =@ID",
+    "hasAutoImcrement": true,
+    "UpdatesyncDate": "UPDATE [dbo].[tblCommerceSyncSettings]   SET [LastItemsSync] = @LastSyncDate   WHERE ID = 1",
+    "syncType": "Date"
+  },
+  {
+    "ActionName": "ItemSubCategoryOut",
+    "SQL": "SELECT ivItemsSubCategory.[ID]  ,[Name]  ,[ParentSub] as [ParentCategoryId]  ,[Description]  FROM [ivItemsSubCategory] Join tbllogData on ivItemsSubCategory.ID = tbllogData.pkValue Where tbllogData.TableName = 'ivItemsSubCategory'  and Action in ('Insert','Update','Delete') and DT = @LastsyncDate",
+    "ReceiveTableName": "Category"
+
+  },
+
+  {
+    "ActionName": "ItemIn",
+    "SQL": "SELECT [Id] AutoID ,[ProductTypeId]  SubCategoryID,[Name]   , 1 as ItemType   ,[ShortDescription]  as Description    ,[Sku]   as ID   ,[Price] as Salesprice  ,1 as Measurment    ,[ProductCost] UnitCost  , 1 as IsActive   ,[Deleted]      ,[UpdatedOnUtc]  FROM [dbo].[Product] where [UpdatedOnUtc] > @LastSyncDate",
+    "ReceiveTableName": "Items",
+    "InsertCommand": "INSERT INTO [dbo].[Items]  (AutoID ,[ID]  ,[Name]  ,[SubCategoryID]  ,[ItemType]  ,[Measurment]  ,[Salesprice]  ,[UnitCost]  ,[Description]  ,[IsActive]     VALUES\t   (@AutoID , @ID  ,@Name  ,@SubCategoryID  ,@ItemType  ,@Measurment  ,@Salesprice  ,@UnitCost  ,@Description  ,@IsActive)",
+    "UpdateCommand": "UPDATE [dbo].[Items]  SET [ID] = @ID ,[Name] = @Name,[SubCategoryID] = @SubCategoryID,[ItemType] = @ItemType,[Measurment] = @Measurment ,[Salesprice] = @Salesprice ,[UnitCost] = @UnitCost ,[Description] = @Description ,[IsActive] = @IsActive  WHERE AutoID = @AutoID",
+    "hasAutoImcrement": true,
+    "UpdatesyncDate": "UPDATE [dbo].[tblCommerceSyncSettings]   SET [LastItemsSync] = @LastSyncDate   WHERE ID = 1",
+    "syncType": "Date"
+  },
+  {
+    "ActionName": "ItemOut",
+    "SQL": "Simplify Log Data",
+    "ReceiveTableName": "Category"
+  },
+
+  {
+    "ActionName": "WareHouseIn",
+    "SQL": "SELECT [Id] as ID  ,[Name]  FROM [dbo].[Warehouse]",
+    "ReceiveTableName": "ivWareHouses",
+    "InsertCommand": "INSERT INTO [dbo].[ivWareHouses]  (ID ,[Name] ,[IsActive])   VALUES (@ID , @Name, 1)",
+    "UpdateCommand": "UPDATE [dbo].[ivWareHouses]  SET [Name] = @Name  WHERE ID = @ID",
+    "hasAutoImcrement": true,
+    "GetlastID": "Select Max(ID) from [Warehouse]",
+    "UpdatesyncDate": "UPDATE [dbo].[tblCommerceSyncSettings]   SET LastWareHouseSyncID = @LastSyncID   WHERE ID = 1",
+    "syncType": "ID"
+  },
+
+  {
+    "ActionName": "WareHouseOut",
+    "SQL": "Simplify Log Data",
+    "ReceiveTableName": "Category"
+  },
+
+  {
+    "ActionName": "CustomerIn",
+    "SQL": "SELECT [Id] ID ,[FirstName]+' '+ [LastName] as Name ,[Email]   ,[CountryId] as Country ,[City] ,[Address1] ,[Address2] ,[ZipPostalCode] as PostalCode ,[PhoneNumber] Telephone1 ,[FaxNumber] Fax ,[CreatedOnUtc]  FROM [dbo].[Address] where [CreatedOnUtc] > @LastSyncDate",
+    "ReceiveTableName": "arCustomer",
+    "InsertCommand": "INSERT INTO [dbo].[arCustomer] (ID , [Name] ,[Address1] ,[Address2] ,[City] ,[Country] ,[Email] ,[PostalCode] ,[Telephone1] ,[Fax] ,[Category] ,[PaymentMethod] ,[IsActive] ) VALUES (@ID , @Name ,@Address1 ,@Address2 ,@City ,@Country ,@Email ,@PostalCode ,@Telephone1 ,@Fax ,1 ,1 ,1)",
+    "UpdateCommand": "UPDATE [dbo].[arCustomer]   SET  [Name] = @Name ,[Address1] = @Address1 ,[Address2] = @Address2 ,[City] = @City ,[Country] = @Country ,[Email] = @Email ,[PostalCode] = @PostalCode ,[Telephone1] = @Telephone1 ,[Fax] = @Fax WHERE ID = @ID",
+    "hasAutoImcrement": true,
+    "GetlastID": "Select Max(ID) from [Address]",
+    "UpdatesyncDate": "UPDATE [dbo].[tblCommerceSyncSettings]   SET LastCustomerSyncID  = @LastSyncID   WHERE ID = 1",
+    "syncType": "ID"
+  },
+
+  {
+    "ActionName": "CustomerOut",
+    "SQL": "Simplify Log Data",
+    "ReceiveTableName": "Category"
+  },
+
+  {
+    "ActionName": "CustomerBoth",
+    "SQL": "Simplify Log Data",
+    "ReceiveTableName": "Category"
+  },
+  {
+    "ActionName": "OrderHIn",
+    "SQL": "SELECT o.[Id] as ID ,[OrderGuid] as OrderNo ,[ShippingAddressId] as CustomerID ,o.[CreatedOnUtc] as HDate , Address1 + Address2 as CustomerData  FROM [dbo].[Order] o Join Address A on o.ShippingAddressId = a.Id where o.ID > @LastSyncID",
+    "ReceiveTableName": "arSalesOrderH",
+    "InsertCommand": "INSERT INTO [dbo].[arSalesOrderH] (ID ,[OrderNo]   ,[CustomerID]  ,[HDate] ,[Finished] ,[CustomerData] ,[OrderSource]) VALUES (@ID ,left( @OrderNo , 10) ,@CustomerID ,@HDate ,0 ,@CustomerData ,1)",
+    "UpdateCommand": "UPDATE [dbo].[arSalesOrderH]   SET [OrderNo] = left( @OrderNo , 10) ,[CustomerID] = @CustomerID ,[HDate] = @HDate ,[CustomerData] = @CustomerData WHERE ID = @ID",
+    "hasAutoImcrement": true,
+    "GetlastID": "Select Max(ID) from [Order]",
+    "UpdatesyncDate": "UPDATE [dbo].[tblCommerceSyncSettings]   SET [LastOrderSyncID] = @LastSyncDate   WHERE ID = 1",
+    "syncType": "ID"
+  },
+  {
+    "ActionName": "OrderDIn",
+    "SQL": "SELECT   [Id] as ID ,[OrderId] [SalesPOHID],[ProductId] ItemID,[Quantity] Qty,[UnitPriceInclTax]  Price FROM [dbo].[OrderItem] Where ID = @LastSyncID",
+    "ReceiveTableName": "arSalesOrderD",
+    "InsertCommand": "INSERT INTO [dbo].[arSalesOrderH] (ID ,[OrderNo]   ,[CustomerID]  ,[HDate] ,[Finished] ,[CustomerData] ,[OrderSource]) VALUES (@ID ,left( @OrderNo , 10) ,@CustomerID ,@HDate ,0 ,@CustomerData ,1)",
+    "UpdateCommand": "UPDATE [dbo].[arSalesOrderH]   SET [OrderNo] = left( @OrderNo , 10) ,[CustomerID] = @CustomerID ,[HDate] = @HDate ,[CustomerData] = @CustomerData WHERE ID = @ID",
+    "hasAutoImcrement": true,
+    "GetlastID": "Select Max(ID) from [OrderItem]",
+    "UpdatesyncDate": "UPDATE [dbo].[tblCommerceSyncSettings]   SET [LastOrderDsyncID] = @LastSyncID   WHERE ID = 1",
+    "syncType": "ID"
+  }
+
+]

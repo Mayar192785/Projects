@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Access from multiple devices" xml:space="preserve">
+    <value>الوصول من أجهزة متعددة</value>
+  </data>
+  <data name="Are you sure you want to delete GE_SubSystems" xml:space="preserve">
+    <value>هل متأكد ان تريد مسح GE_SubSytems ؟</value>
+  </data>
+  <data name="By leveraging the power of cloud technology, Crystal View enables efficient collaboration, streamlined workflows, and data synchronization across multiple devices, empowering organizations to make informed decisions, optimize resource allocation, and drive productivity regardless of physical boundaries." xml:space="preserve">
+    <value>من خلال الاستفادة من قوة تقنية السحابة ، يتيح لكريستال فيو التعاون الفعال ، وسير العمل المبسط ، ومزامنة البيانات عبر أجهزة متعددة ، وتمكين المؤسسات من اتخاذ قرارات مستنيرة ، وتحسين تخصيص الموارد, ودفع الإنتاجية بغض النظر عن الحدود المادية.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>اغلاق</value>
+  </data>
+  <data name="Cloud Hosting" xml:space="preserve">
+    <value>استضافة السحابة</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>انشاء</value>
+  </data>
+  <data name="Crystal soft is a leading software company in Egypt. Crystal Soft has been established since 2001 and specializes in software development and applications, and also specializes in providing consulting and technical support services. We bring a wide range of software solutions for small and medium-sized businesses and large companies along with training." xml:space="preserve">
+    <value>كريستال سوفت هي شركة برمجيات رائدة في مصر. تم إنشاء كريستال سوفت منذ عام 2001 وهي متخصصة في تطوير البرمجيات وتطبيقاتها ، كما أنها متخصصة في تقديم  خدمات الاستشارات والدعم الفني. نقدم مجموعة واسعة من الحلول البرمجية للشركات الصغيرة والمتوسطة والشركات الكبيرة إلى جانب التدريب.</value>
+  </data>
+  <data name="Crystal View program is really one of the best programs I have used, because it is a program built on strong basis, you find comfort and flexibility in use with security, in addition to all the reports for accounting use or for the employer, which helps in making the right decision on time." xml:space="preserve">
+    <value>برنامج كريستال فيو هو حقًا أحد أفضل البرامج التي استخدمتها ، لأنه برنامج مبني على أساس قوي ، تجد الراحة والمرونة في الاستخدام مع الأمان, بالإضافة إلى جميع التقارير للاستخدام المحاسبي أو لصاحب العمل ، مما يساعد في اتخاذ القرار الصحيح في الوقت المحدد.</value>
+  </data>
+  <data name="Crystal View system provides the necessary time to conduct administrative and accounting operations in record time and helps in issuing reports, financial statements, audit and others" xml:space="preserve">
+    <value>يوفر نظام كريستال فيو توفير الوقت اللازم لإجراء العمليات الإدارية والمحاسبية في وقت قياسي ويساعد في إصدار التقارير والكشوف المالية والمراجعة وغيرها</value>
+  </data>
+  <data name="Data Quality" xml:space="preserve">
+    <value>جودة البيانات</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="DetailsButton" xml:space="preserve">
+    <value>اظهار التفاصيل</value>
+  </data>
+  <data name="Dr. Mohamed Al Henawy" xml:space="preserve">
+    <value>الدكتور محمد الحناوي</value>
+  </data>
+  <data name="Ease of use" xml:space="preserve">
+    <value>سهولة الاستخدام</value>
+  </data>
+  <data name="Ease of use is considered the most important features of Crystal software, as the company is working on developing its products to facilitate use in crystal systems and programs" xml:space="preserve">
+    <value>تعتبر سهولة الاستخدام أهم ميزات برنامج كريستال، حيث تعمل الشركة على تطوير منتجاتها لتسهيل الاستخدام في أنظمة وبرامج كريستال</value>
+  </data>
+  <data name="EditButton" xml:space="preserve">
+    <value>تغير</value>
+  </data>
+  <data name="ERP System" xml:space="preserve">
+    <value>نظام تخطيط موارد المؤسسات</value>
+  </data>
+  <data name="I have been working in the medical field since 2003 and I have used many programs, but when I used the Crystal View program, I did not find it easier to work and give me the appropriate reports and technical support that I find when I need it, starting from using this system, I always recommend it." xml:space="preserve">
+    <value>أعمل في المجال الطبي منذ عام 2003 واستخدمت العديد من البرامج ، ولكن عندما استخدمت برنامج كريستال فيو لم أجد أنه من الأسهل العمل وإعطائي التقارير المناسبة والدعم الفني الذي أجده عندما أحتاج إليه ، بدءًا من استخدام هذا النظام ، أوصي به دائمًا.</value>
+  </data>
+  <data name="Integrated System" xml:space="preserve">
+    <value>نظام متكامل</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value> نشط ؟</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>الدخول</value>
+  </data>
+  <data name="Monay Lamaay Rayes" xml:space="preserve">
+    <value>موناي لمعي ريس</value>
+  </data>
+  <data name="Mostafa Abbas" xml:space="preserve">
+    <value>مصطفى عباس</value>
+  </data>
+  <data name="Save Time" xml:space="preserve">
+    <value>يوفر وقت</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>البحث</value>
+  </data>
+  <data name="SubSystemArabicName" xml:space="preserve">
+    <value>اسم عربي للنظام الفرعي</value>
+  </data>
+  <data name="SubSystemName" xml:space="preserve">
+    <value>اسم النظام الفرعي</value>
+  </data>
+  <data name="SubSystemShortName" xml:space="preserve">
+    <value>اسم قصير للنظام الفرعي</value>
+  </data>
+  <data name="The Crystal program is one of the best programs I have worked on because it has all your needs. It has strong reports for any employer and is easy to deal with. The most important need is also that the after-sales service exists and continues in a positive way, which is to distinguish any respectable program." xml:space="preserve">
+    <value>برنامج كريستال هو واحد من أفضل البرامج التي عملت عليها لأنه يحتوي على جميع احتياجاتك. لديها تقارير قوية لأي صاحب عمل ويسهل التعامل معها. الحاجة الأكثر أهمية هي أيضًا أن خدمة ما بعد البيع موجودة وتستمر بطريقة إيجابية ، وهي التمييز بين أي برنامج محترم.</value>
+  </data>
+  <data name="The crystal system combines many specialized and integrated systems in all its parts, which makes it easy to update, develop and modify for customers to comply with the development and growth of their organizations" xml:space="preserve">
+    <value>يجمع النظام كريستال بين العديد من الأنظمة المتخصصة والمتكاملة في جميع أجزائه ، مما يجعل منه سهل التحديث والتطوير والتعديل للعملاء ليتوافق مع مؤسساتهم</value>
+  </data>
+  <data name="The integrated Crystal View system provides the effort of searching the books and works to organize documents and statements and extract detailed reports with ease and high quality" xml:space="preserve">
+    <value>يوفر نظام كريستال فيو المتكامل مجهود البحث في الدفاتر ويعمل على تنظيم المستندات والكشوف 
+واستخراج التقارير المفصلة بكل سهولة وجودة عالية</value>
+  </data>
+  <data name="What people are saying..." xml:space="preserve">
+    <value>ماذا يقول الناس ؟</value>
+  </data>
+  <data name="With its responsive design and adaptive user interface, Crsytal View adapts seamlessly to different devices such as desktops, laptops, tablets, and smartphones, providing a consistent user experience.This flexibility allows employees, managers, and stakeholders to access and interact with critical business data, monitor real-time updates, and perform essential tasks from anywhere, whether they are in the office, on the go, or working remotely." xml:space="preserve">
+    <value>بفضل تصميمها المتجاوب وواجهة المستخدم التكيفية ، تتكيف كريستال فيو بسلاسة مع الأجهزة المختلفة مثل أجهزة الكمبيوتر المكتبية وأجهزة الكمبيوتر المحمولة والأجهزة اللوحية والهواتف الذكية ، مما يوفر تجربة مستخدم متسقة, وأصحاب المصلحة للوصول إلى بيانات الأعمال الهامة والتفاعل معها ، ومراقبة التحديثات في الوقت الحقيقي ، وأداء المهام الأساسية من أي مكان ، سواء كانوا في المكتب أو أثناء التنقل أو العمل عن بُعد.</value>
+  </data>
+</root>

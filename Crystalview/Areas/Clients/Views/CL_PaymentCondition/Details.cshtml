@@ -1,0 +1,182 @@
+@model FinanceCore.DBModels.tblCL_PaymentCondition
+@*@using  FinanceCore.Globalization;*@
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Services;
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "CL_PaymentCondition ..Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn {
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem
+    }
+
+    #nav-tab .nav-link {
+        border-color: #094766;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+</style>
+<div class="row mx-5 my-auto">
+    <!-- /Start Tabs -->
+    <div class="col-md-12">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link shadow shadow-bottom-0 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["BasicDetails"]</button>
+            </div>
+        </nav>
+        <div class="tab-content  mx-auto my-auto py-auto">
+
+            <div class="active  tab-pane" id="details">
+                <div class="box shadow mb-4">
+                    <div class="form box-body py-3 px-3">
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvPaymentCode" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="PaymentCode" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="PaymentCode" asp-format="{0:N0}" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div ID="dvPaymentNameA" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="PaymentNameA" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="PaymentNameA" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvPaymentNameE" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="PaymentNameE" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="PaymentNameE" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div ID="dvDealWBank" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="DealWBank" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="DealWBank" asp-format="{0:N0}" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvAccountName" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="AccountName" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="AccountName" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div ID="dvBankName" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="BankName" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="BankName" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvBranchNo" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="BranchNo" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="BranchNo" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div ID="dvAccountNo" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="AccountNo" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="AccountNo" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvSwiftCode" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="SwiftCode" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="SwiftCode" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div ID="dvIBAN" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="IBAN" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="IBAN" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between d-flex">
+                            <div ID="dvStatus" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="Status" class="control-label "></label>
+                                    <div class=" ">
+                                        <input asp-for="Status" asp-format="{0:N0}" class="form-control " disabled="disabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div ID="dvTimeStamp" class="col-sm-6">
+                                <div class="form-group has-feedback ">
+                                    <label asp-for="TimeStamp" class="control-label "></label>
+                                    <div class=" ">
+                                        <div class="input-group ">
+                                            <input asp-for="TimeStamp" type="text" class="form-control   inputDistance  date-picker  " disabled="disabled" />
+                                            <span class="input-group-addon"> <i class="far fa-calendar-alt fa-lg"></i> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 btns my-3">
+                            <a asp-controller="CL_PaymentCondition"
+                               class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.PaymentCode" style=@(await new syPageRolesVM().pageCanEdit(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["UpdateBtn"]<i class="far fa-save"></i></a>
+                            <a asp-controller="CL_PaymentCondition" class="btn btn-primary" asp-action="Index">@Localizer["BackBtn"] <i class="fas fa-angle-double-left"></i></a>
+                            <a asp-controller="CL_PaymentCondition" class="btn btn-primary" asp-action="PrintFormReport"
+                               asp-route-id="@Model.PaymentCode" asp-route-formAction="Details" data-modal='' id="btnPrintForm" style=@(await new syPageRolesVM().pageCanPrint(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["PrintBtn"]<i class="fas fa-print"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+ }

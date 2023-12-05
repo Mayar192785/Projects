@@ -1,0 +1,283 @@
+﻿@model IEnumerable<Global.Models.SidebarMenu>
+@using  Global.Models
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<style>
+
+    .nav-pills .nav-link{
+       margin:0 !important;
+       background-color:transparent !important;
+       padding: 0.5rem !important;
+    }
+    .nav-pills .nav-link:active{
+       border-left-color: #3c8dbc !important;
+    }
+    .nav-treeview{
+        margin-left: 1rem;
+    }
+</style>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- sidebar: style can be found in sidebar.less -->
+@*     <a href="/Home/MainPage" class="logo-link">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-sm" style="text-decoration:none; color:white;">@Configuration.GetSection("AppInfo")["ShortName"]</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg" style="text-decoration:none;color:white;">@Configuration.GetSection("AppInfo")["Name"]</span>
+    </a> *@
+    <a href="/Home/MainPage" class="brand-link">
+        <img src="dist/img/AdminLTELogo.png" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">@Configuration.GetSection("AppInfo")["Name"]</span>
+    </a>
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column mx-auto" data-widget="treeview" role="menu" data-accordion="false">
+                @{
+                    @foreach (var menu in (Model as IEnumerable<SidebarMenu>).Where(x => x.ID == SiteUtils.ActiveMenu))
+                    {
+                        if (menu.Type == SidebarMenuType.Header)
+                        {
+                            <li class="nav-header">@menu.Name</li>
+                        }
+                        else if (menu.Type == SidebarMenuType.Link)
+                        {
+                            var active = string.Empty;
+                            if (menu.URLPath != "/" && @Context.Request.Path.Value.Contains(menu.URLPath))
+                            {
+                                active = "active";
+                            }
+                            <li class="nav-item menu-open mx-auto @active">
+                                <a class="nav-link" href="@menu.URLPath">
+                                    
+                                    <i class="nav-icon @menu.IconClassName"></i>
+                                    <p>
+                                        @menu.Name
+                                    </p>
+                                    <span class="right-container">
+                                        @{
+                                            if (menu.LinkCounter.Item1 > 0)
+                                            {
+                                                <small class="label right bg-blue">@menu.LinkCounter.Item1</small>
+                                            }
+                                            if (menu.LinkCounter.Item2 > 0)
+                                            {
+                                                <small class="label right bg-green">@menu.LinkCounter.Item2</small>
+                                            }
+                                            if (menu.LinkCounter.Item3 > 0)
+                                            {
+                                                <small class="label right bg-red">@menu.LinkCounter.Item3</small>
+                                            }
+                                        }
+                                    </span>
+                                </a>
+                            </li>
+
+                        }
+                        else if (menu.Type == SidebarMenuType.Tree)
+                        {
+                            var active = string.Empty;
+                            if (menu.TreeChild.Any(x => @Context.Request.Path.Value.Contains(x.URLPath)))
+                            {
+                                active = "active";
+                            }
+
+                            <li class="nav-item menu-open mx-auto @active">
+                                <a class="nav-link" href="#">
+                                    
+                                    <i class="nav-icon @menu.IconClassName"></i>
+                                    <p>
+                                        @menu.Name
+                                        <i class="fa fa-angle-left right"></i>
+                                    </p>
+                                    <!-- <i class="fa fa-expeditedssl"></i> <span>@menu.Name</span>-->
+                                        
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    @foreach (SidebarMenu subMenu in menu.TreeChild)
+                                    {
+                                        active = string.Empty;
+                                        if (Context.Request.Path.Value.Contains(subMenu.URLPath))
+                                        {
+                                            active = "active";
+                                        }
+
+                                        <!-- begin level 2-->
+                                        if (subMenu.Type == SidebarMenuType.Tree)
+                                        {
+                                            active = string.Empty;
+                                            if (subMenu.TreeChild.Any(x => @Context.Request.Path.Value.Contains(x.URLPath)))
+                                            {
+                                                active = "active";
+                                            }
+
+                                            <li class="nav-item menu-open mx-auto @active">
+                                                <a class="nav-link" href="#">
+                                                    
+                                                    <i class="nav-icon @subMenu.IconClassName"></i>
+                                                    <p>
+                                                        @subMenu.Name
+                                                        <i class="fa fa-angle-left right"></i>
+                                                    </p>
+                                                </a>
+                                                <ul class="nav nav-treeview">
+                                                    @foreach (SidebarMenu subMenu2 in subMenu.TreeChild)
+                                                    {
+                 
+                                                        active = string.Empty;
+                                                        if (Context.Request.Path.Value.Contains(subMenu2.URLPath))
+                                                        {
+                                                            active = "active";
+                                                        }
+                                                        <!-- begin level 3-->
+                                                        if (subMenu2.Type == SidebarMenuType.Tree)
+                                                        {
+                                                            active = string.Empty;
+                                                            if (subMenu2.TreeChild.Any(x => @Context.Request.Path.Value.Contains(x.URLPath)))
+                                                            {
+                                                                active = "active";
+                                                            }
+
+                                                            <li class="nav-item menu-open mx-auto @active">
+                                                                <a class="nav-link" href="#">
+                                                                    
+                                                                    <i class="nav-icon @subMenu2.IconClassName"></i>
+                                                                    <p>
+                                                                        @subMenu2.Name
+                                                                        <i class="fa fa-angle-right right"></i>
+                                                                    </p>
+                                                                        
+                                                                </a>
+                                                                <ul class="nav nav-treeview">
+                                                                    @foreach (SidebarMenu subMenu3 in subMenu2.TreeChild)
+                                                                    {
+                                                                        active = string.Empty;
+                                                                        if (Context.Request.Path.Value.Contains(subMenu3.URLPath))
+                                                                        {
+                                                                            active = "active";
+                                                                        }
+                                                                        <!-- begin level 4-->
+                                                                        if (subMenu3.Type == SidebarMenuType.Tree)
+                                                                        {
+                                                                            active = string.Empty;
+                                                                            if (subMenu3.TreeChild.Any(x => @Context.Request.Path.Value.Contains(x.URLPath)))
+                                                                            {
+                                                                                active = "active";
+                                                                            }
+
+                                                                            <li class="nav-item menu-open mx-auto @active">
+                                                                                <a class="nav-link" href="#">
+                                                                                    
+                                                                                    <i class="nav-icon @subMenu3.IconClassName"></i>
+                                                                                    <p>
+                                                                                        @subMenu3.Name
+                                                                                        <i class="fa fa-angle-left right"></i>
+                                                                                    </p>
+                                                                                </a>
+                                                                                <ul class="nav nav-treeview">
+                                                                                    @foreach (SidebarMenu subMenu4 in subMenu3.TreeChild)
+                                                                                    {
+                                                                                        active = string.Empty;
+                                                                                        if (Context.Request.Path.Value.Contains(subMenu4.URLPath))
+                                                                                        {
+                                                                                            
+                                                                                            active = "active";
+                                                                                        }
+                                                                                        <!-- begin level 5-->
+                                                                                        if (subMenu4.Type == SidebarMenuType.Tree)
+                                                                                        {
+                                                                                            active = string.Empty;
+                                                                                            if (subMenu4.TreeChild.Any(x => @Context.Request.Path.Value.Contains(x.URLPath)))
+                                                                                            {
+                                                                                                active = "active";
+                                                                                            }
+
+                                                                                            <li class="nav-item menu-open mx-50 @active">
+                                                                                                <a class="nav-link" href="#">
+                                                                                                    
+                                                                                                        <i class="nav-icon @subMenu4.IconClassName"></i>
+                                                                                                    <p>
+                                                                                                        @subMenu4.Name
+                                                                                                        <i class="fa fa-angle-left right"></i>
+                                                                                                    </p>
+                                                                                                </a>
+                                                                                                <ul class="nav nav-treeview">
+                                                                                                    @foreach (SidebarMenu subMenu5 in subMenu4.TreeChild)
+                                                                                                    {
+                                                                                                        active = string.Empty;
+                                                                                                        if (Context.Request.Path.Value.Contains(subMenu5.URLPath))
+                                                                                                        {
+                                                                                                            active = "active";
+                                                                                                        }
+                                                                                                        <!-- begin level 6-->
+                                                                                                        <!-- End level 6-->
+                                                                                                        <li class="nav-item menu-open @active"><a class="nav-link" href="@subMenu5.URLPath">@subMenu5.Name</a></li>
+                                                                                                    }
+                                                                                                </ul>
+                                                                                            </li>
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <li class="nav-item @active"><a class="nav-link" href="@subMenu4.URLPath">@subMenu4.Name</a></li>
+
+                                                                                        }
+
+
+
+                                                                                        <!-- End level 5-->
+                                                                                    }
+                                                                                </ul>
+                                                                            </li>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <li class="nav-item @active"><a class="nav-link" href="@subMenu3.URLPath">
+                                                                                    <i class="fa-regular fa-circle mx-1"></i>
+                                                                                    <p>@subMenu3.Name</p>
+                                                                                </a>
+                                                                            </li>
+
+                                                                        }
+
+                                                                        <!-- End level 4-->
+                                                                    }
+                                                                </ul>
+                                                            </li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li class="nav-item @active">
+                                                                <a class="nav-link" href="@subMenu2.URLPath">
+                                                                    <i class="fa-regular fa-circle mx-1"></i>
+                                                                    <p>@subMenu2.Name</p>
+                                                                </a>
+                                                            </li>
+
+                                                        }
+
+                                                        <!-- End level 3-->
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="nav-item @active">
+                                                <a class="nav-link" href="@subMenu.URLPath">
+                                                    <i class="fa-regular fa-circle mx-1"></i>
+                                                    <p>@subMenu.Name</p>
+                                                </a>
+                                            </li>
+
+                                        }
+                                        <!--end of level 2-->
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

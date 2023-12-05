@@ -1,0 +1,211 @@
+@model FinanceCore.DBModels.tblGE_Branchs
+@using NonFactors.Mvc.Lookup
+@using Global.Globalization;
+@using Global.DBModels;
+@using Global.Models;
+@using Global.Services;
+@using FinanceCore.DBModels;
+
+@using Microsoft.Extensions.Localization;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Global.Helpers
+
+@inject IViewLocalizer Localizer
+
+@{
+    ViewBag.Title = "GE_Branchs ..Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .btn {
+        background-color: #094766;
+        color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem
+    }
+
+    #nav-tab .nav-link {
+        border-color: #094766;
+        color: black;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+    }
+</style>
+<div class="row mx-5 my-auto">
+    <!-- /Start Tabs -->
+    <div class="col-md-12">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link shadow shadow-bottom-0 active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="nav-home" aria-selected="true">@Localizer["BasicDetails"]</button>
+            </div>
+        </nav>
+        <div class="tab-content mx-auto my-auto py-auto">
+
+            <div class="active tab-pane" id="details">
+                <!-- /End Tabs -->
+                <form asp-controller="GE_Branchs"
+                      asp-action="Edit"
+                      asp-route-returnurl="@ViewBag.ReturnUrl"
+                      asp-anti-forgery="false"
+                      id="FullForm"
+                      method="post">
+
+
+                    <div class="box shadow mb-4">
+                        <div class="form box-body py-3 px-3">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvBranchCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="BranchCode" class="control-label "></label>
+                                        <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                                        <input asp-for="BranchCode" asp-format="{0:N0}" class="form-control required w-50" type="text" min="0" step="1" autocomplete="off" disabled="disabled"/>
+                                        <span asp-validation-for="BranchCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvBranchNameA" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="BranchNameA" class="control-label "></label>
+                                        <span class="form-control-static"><small>@Localizer["RequiredTag"]</small></span>
+                                        <input asp-for="BranchNameA" class="form-control    required w-50 " />
+                                        <span asp-validation-for="BranchNameA" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvBranchNameE" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="BranchNameE" class="control-label "></label>
+                                        <input asp-for="BranchNameE" class="form-control w-50" />
+                                        <span asp-validation-for="BranchNameE" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvCountryCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="CountryCode" class="control-label "></label>
+@*                                         <input asp-for="CountryCode" asp-format="{0:N0}" class="form-control " type="text" min="0" step="1" autocomplete="off" />
+ *@
+                                        <select class="form-select required w-50" aria-label="Default select example">
+                                            <option value="1" selected>Egypt (1)</option>
+                                            <option value="2">KSA (2)</option>
+                                            <option value="3">UAE (3)</option>
+                                        </select>
+                                        <span asp-validation-for="CountryCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvCityCode" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="CityCode" class="control-label "></label>
+@*                                         <input asp-for="CityCode" asp-format="{0:N0}" class="form-control " type="text" min="0" step="1" autocomplete="off" />
+ *@
+                                        <select class="form-select required w-50" aria-label="Default select example">
+                                            <option value="1" selected>One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                        <span asp-validation-for="CityCode" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvAddressA" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="AddressA" class="control-label "></label>
+                                        <input asp-for="AddressA" class="form-control w-50" />
+                                        <span asp-validation-for="AddressA" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvAddressE" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="AddressE" class="control-label "></label>
+                                        <input asp-for="AddressE" class="form-control w-50" />
+                                        <span asp-validation-for="AddressE" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvTel1" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Tel1" class="control-label "></label>
+                                        <input asp-for="Tel1" class="form-control w-50" />
+                                        <span asp-validation-for="Tel1" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvTel2" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Tel2" class="control-label "></label>
+                                        <input asp-for="Tel2" class="form-control w-50" />
+                                        <span asp-validation-for="Tel2" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div ID="dvTel3" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Tel3" class="control-label "></label>
+                                        <input asp-for="Tel3" class="form-control w-50" />
+                                        <span asp-validation-for="Tel3" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between d-flex">
+                                <div ID="dvFax" class="col-sm-6">
+                                    <div class="form-group has-feedback ">
+                                        <label asp-for="Fax" class="control-label "></label>
+                                        <input asp-for="Fax" class="form-control w-50" />
+                                        <span asp-validation-for="Fax" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class=" form-group col-sm-12 btns my-3">
+                                <button class="btn btn-primary" type="submit"> @Localizer["btnSave"] <i class="far fa-save"></i>  </button>
+                                <a asp-controller="GE_Branchs" class="btn btn-primary" asp-action="Index" data-toggle='modal' data-target='#myModal' class='ModalClick'>@Localizer["BackBtn"] <i class="fas fa-angle-double-left"></i></a>
+                                <a asp-controller="GE_Branchs" class="btn btn-primary" asp-action="PrintFormReport"
+                                   asp-route-id="@Model.BranchCode" asp-route-formAction="Details" data-modal='' id="btnPrintForm" style=@(await new syPageRolesVM().pageCanPrint(Context.Request.Path.ToString().Substring(0, Context.Request.Path.ToString().LastIndexOf('/')), Context.User.Identity.Name) ? "display:run-in " : "display:none")>@Localizer["PrintBtn"]<i class="fas fa-print"></i></a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@*<YYYYYYYYYYYYYYYY Details go here>*@
+<!-- modal placeholder-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Localizer["Confirm Save"]</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>@Localizer["Do you want to save changes GE_SubSystems "]@Model ?</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-controller="GE_Branchs" type="button" class="btn" asp-action="Index">@Localizer["Back"]</a>
+                <button type="button" class="btn btn-warning">@Localizer["Save"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span id="progress" class="text-center" style="display: none;">
+    <img src="~/images/ajax-loader.gif" alt="wiat" />
+    Wait..
+</span>
+
+
+@section Scripts {
+    <script>
+
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+ }
+
